@@ -1,4 +1,4 @@
-// Copyright (C) 2002-2008 Nikolaus Gebhardt
+// Copyright (C) 2002-2009 Nikolaus Gebhardt
 // This file is part of the "Irrlicht Engine".
 // For conditions of distribution and use, see copyright notice in irrlicht.h
 
@@ -65,7 +65,7 @@ IAnimatedMesh* CXMeshFileLoader::createMesh(io::IReadFile* f)
 #endif
 
 	AnimatedMesh = getNewMesh();
-	
+
 	if (load(f))
 	{
 		AnimatedMesh->finalize();
@@ -2345,3 +2345,4 @@ core::stringc CXMeshFileLoader::stripPathFromString(core::stringc string, bool r
 } // end namespace irr
 
 #endif // _IRR_COMPILE_WITH_X_LOADER_
+

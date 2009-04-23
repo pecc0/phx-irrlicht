@@ -21,15 +21,15 @@ namespace scene
 {
 
 	//! Special scene node animator for FPS cameras
-	class CSceneNodeAnimatorCameraFPS : public ISceneNodeAnimatorCameraFPS 
+	class CSceneNodeAnimatorCameraFPS : public ISceneNodeAnimatorCameraFPS
 	{
 	public:
 
 		//! Constructor
-		CSceneNodeAnimatorCameraFPS(gui::ICursorControl* cursorControl, 
+		CSceneNodeAnimatorCameraFPS(gui::ICursorControl* cursorControl,
 			f32 rotateSpeed = 100.0f, f32 moveSpeed = .5f, f32 jumpSpeed=0.f,
 			SKeyMap* keyMapArray=0, u32 keyMapSize=0, bool noVerticalMovement=false);
-			
+
 		//! Destructor
 		virtual ~CSceneNodeAnimatorCameraFPS();
 
@@ -91,7 +91,7 @@ namespace scene
 		\param keymap the new keymap array */
 		void setKeyMap(const core::array<SCamKeyMap>& keymap);
 
-	//for phx
+	//for  phx
 	protected:
 		void allKeysUp();
 

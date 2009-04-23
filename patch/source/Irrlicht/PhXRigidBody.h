@@ -46,9 +46,9 @@ public:
 	CPhXRigidBody* parent;
 private:
 	
-	irr::core::quaternion m_totalTorque;
+	irr::core::vector3df m_totalTorque;
 
-	core::quaternion m_algularVel;
+	core::vector3df m_algularVel;
 	
 	
 };

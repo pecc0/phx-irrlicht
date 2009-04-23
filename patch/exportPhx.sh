@@ -30,6 +30,7 @@ FILES=$FILES" "$(find source/ -regextype posix-extended -regex ".*CSceneNodeAnim
 FILES=$FILES" "$(find . -regextype posix-extended -regex "\./(include|source).*SceneManager\.(h|cpp)")
 FILES=$FILES" "$(find . -regextype posix-extended -regex "\./(include|source).*SKeyMap\.h")
 FILES=$FILES" "./include/irrString.h
+FILES=$FILES" "./include/EDebugSceneTypes.h
 FILES=$FILES" "./media/dwarf.phx
 FILES=$FILES" "./media/config.xml
 FILES=$FILES" "$(find export/ -iname "*.*x")

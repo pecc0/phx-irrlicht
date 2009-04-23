@@ -1,4 +1,4 @@
-#!bash
+#!/bin/bash
 #This script creates a patch of the irrlicht physics from the irrlicth directory in the current (patch) directory
 
 cd ../irrlicht_1.5_svn
@@ -22,7 +22,8 @@ FILES=$(find . -regextype posix-extended -regex "\./(include|source).*PhX.*(cpp|
 #FILES=$FILES" "$(find include/ -name PhX*cpp)
 FILES=$FILES" "$(find examples/ -wholename *PhysicsMeshViewer/main.cpp)
 FILES=$FILES" "$(find examples/ -wholename *PhysicsMeshViewer/save.png)
-FILES=$FILES" "$(find examples/ -wholename *PhysicsMeshViewer/PhysicsMeshViewer.vcproj)
+FILES=$FILES" "$(find examples/ -wholename *PhysicsMeshViewer/PhysicsMeshViewer.*)
+FILES=$FILES" "$(find examples/ -wholename *BuildAllExamples.workspace)
 FILES=$FILES" "$(find examples/ -wholename *Demo/CDemo.h)
 FILES=$FILES" "$(find source/ -regextype posix-extended -regex ".*CXMeshFileLoader\.(h|cpp)")
 FILES=$FILES" "$(find source/ -regextype posix-extended -regex ".*CSkinnedMesh\.(h|cpp)")

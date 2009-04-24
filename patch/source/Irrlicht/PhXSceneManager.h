@@ -1,5 +1,6 @@
 #pragma once
 #include "CSceneManager.h"
+#include "PhXSceneNode.h"
 namespace irr
 {
 namespace scene
@@ -25,6 +26,9 @@ public:
 
 	virtual bool postEventFromUser(const SEvent& event);
 
+protected:
+	ISceneNode* physicsNode;
 };
+
 }
 }

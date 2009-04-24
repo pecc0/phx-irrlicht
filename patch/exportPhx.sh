@@ -8,7 +8,7 @@ for f in $(find $EXPORTDIR -type f)
 do
 	if [[ $f != */.svn* ]]
 	then
-		if [[ $f != *exportPhx.sh ]]
+		if [[ $f != $EXPORTDIR/*.sh ]]
 		then
 			rm $f
 			echo $f

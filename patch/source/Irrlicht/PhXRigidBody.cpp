@@ -42,18 +42,18 @@ void CPhXRigidBody::ApplyTorque(const core::vector3df& torque)
 
 void CPhXRigidBody::UpdateVelocity(f32 step)
 {
-
-	m_linearVel += (step * ((f32)m_massInv)) * m_totalForce;
+	CPhXMassObject::UpdateVelocity(step);
+	//m_linearVel += (step * ((f32)m_massInv)) * m_totalForce;
 	m_algularVel += (step * m_massInv) * m_totalTorque;
 
-	m_totalForce.set(0,0,0);
+	
 	m_totalTorque.set(0,0,0);
 }
 
 void CPhXRigidBody::UpdatePosition(f32 step)
 {
-	UpdateVelocity(step);
-	
+	//UpdateVelocity(step);
+	CPhXMassObject::UpdatePosition(step);
 	//m_node->setPosition(m_node->getPosition() + m_linearVel);
 	//m_node->getRotation()
 		//m_node->setRotation

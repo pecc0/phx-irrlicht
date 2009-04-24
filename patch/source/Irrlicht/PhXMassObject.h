@@ -15,6 +15,8 @@ public:
 	void ApplyCentralForce(const core::vector3df& force);
 	void SetMass(f64 mass);
 
+	virtual void UpdateVelocity(f32 step);
+	virtual void UpdatePosition(f32 step);
 	
 protected:
 	f64 m_mass;

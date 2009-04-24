@@ -15,6 +15,8 @@ public:
 			const core::vector3df& position = core::vector3df(0,0,0), s32 id=-1,
 			video::SColor shadeTop = 0xFFFFFFFF, video::SColor shadeBottom = 0xFFFFFFFF, f64 mass=1.);
 	~CPhXAtom(void);
+
+	virtual void UpdatePosition(f32 step);
 };
 }
 }

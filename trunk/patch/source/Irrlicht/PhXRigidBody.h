@@ -24,8 +24,9 @@ public:
 //These "joints" are actually "bones"
 struct CPhXRigidBody : 
 	//public virtual IReferenceCounted,
-	public irr::scene::ISkinnedMesh::SJoint,
-	public virtual CPhXMassObject
+	public virtual CPhXMassObject,
+	public irr::scene::ISkinnedMesh::SJoint
+	
 {
 public:
 	CPhXRigidBody(void);

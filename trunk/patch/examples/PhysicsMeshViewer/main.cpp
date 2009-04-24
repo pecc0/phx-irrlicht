@@ -551,17 +551,19 @@ public:
 					core::vector3df pos = camera->getPosition();
 					core::vector3df target = (camera->getTarget() - camera->getAbsolutePosition());
 					target.setLength(50);
+					core::vector3df force = target;
+					force.setLength(1);
 
-					scene::IBillboardSceneNode * atom;
-					atom = Device->getSceneManager()->addPhysicsAtom(0, 
+					scene::IBillboardSceneNode * cn;
+					cn = Device->getSceneManager()->addPhysicsAtom(0, 
 						core::dimension2d<f32>(10.0f, 10.0f),
 						pos + target, -1,
-						0xFFFFFFFF, 0xFFFFFFFF, 1.);
-					atom->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR );
-					atom->setMaterialTexture(0, Device->getVideoDriver()->getTexture("../../media/particle.bmp"));
-					atom->setMaterialFlag(video::EMF_LIGHTING, false);
-					atom->setMaterialFlag(video::EMF_ZBUFFER, false);
-					atom->setSize(core::dimension2d<f32>(20.0f, 20.0f));
+						0xFFFFFFFF, 0xFFFFFFFF, 1., force);
+					cn->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR );
+					cn->setMaterialTexture(0, Device->getVideoDriver()->getTexture("../../media/particle.bmp"));
+					cn->setMaterialFlag(video::EMF_LIGHTING, false);
+					cn->setMaterialFlag(video::EMF_ZBUFFER, false);
+					cn->setSize(core::dimension2d<f32>(20.0f, 20.0f));
 				}
 			}
 		}

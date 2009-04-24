@@ -3275,6 +3275,22 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PhXSceneNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PhXSceneNode.h"
+				>
+			</File>
+			<File
+				RelativePath=".\PhXSceneNodeAnimator.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PhXSceneNodeAnimator.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PhXSceneNodeAnimatorCameraFPS.cpp"
 				>
 			</File>
@@ -3287,14 +3303,6 @@
 				>
 			</File>
 		</Filter>
-		<File
-			RelativePath=".\PhXSceneNode.cpp"
-			>
-		</File>
-		<File
-			RelativePath=".\PhXSceneNode.h"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

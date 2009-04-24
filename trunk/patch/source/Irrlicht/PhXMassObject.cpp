@@ -11,7 +11,7 @@ CPhXMassObject::~CPhXMassObject(void)
 {
 }
 
-void CPhXMassObject::SetMass(f64 mass)
+void CPhXMassObject::SetMass(f32 mass)
 {
 	m_mass = mass;
 	m_massInv = 1 / mass;
@@ -30,10 +30,12 @@ void CPhXMassObject::UpdateVelocity(f32 step)
 	m_totalForce.set(0,0,0);
 }
 
-void CPhXMassObject::UpdatePosition(f32 step)
+void CPhXMassObject::UpdatePosition(f32 step, core::vector3df* inOutPosition,
+									core::vector3df* inOutRotation)
 {
 	UpdateVelocity(step);
-	
+	(*inOutPosition) += m_linearVel;
+
 	//m_node->setPosition(m_node->getPosition() + m_linearVel);
 	//m_node->getRotation()
 		//m_node->setRotation

@@ -6,7 +6,7 @@
 using namespace irr::scene;
 
 namespace irr
-{
+{ 
 namespace phy
 {
 class CPhXComplexBody :
@@ -21,9 +21,9 @@ public:
 protected:
 	virtual SJoint *getNewJoint(SJoint *aParent)
 	{
-		CPhXRigidBody* ret = new CPhXRigidBody();
-		ret->parent = (CPhXRigidBody*)aParent;
-		return ret;
+		//CPhXRigidBody* ret = new CPhXRigidBody();
+		//ret->parent = (CPhXRigidBody*)aParent;
+		return new SJoint;
 	}
 
 public:

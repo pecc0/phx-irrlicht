@@ -26,7 +26,7 @@ public:
 
 	virtual bool postEventFromUser(const SEvent& event);
 
-protected:
+public:
 	ISceneNode* physicsNode;
 };
 

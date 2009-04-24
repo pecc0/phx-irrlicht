@@ -7,6 +7,7 @@
 
 #include "ISceneNode.h"
 #include "PhXMassObject.h"
+#include "PhXSceneManager.h"
 
 namespace irr
 {
@@ -19,7 +20,7 @@ namespace scene
 	public:
 
 		//! constructor
-		CPhXSceneNodeAnimator(CPhXMassObject* obj);
+		CPhXSceneNodeAnimator(CPhXMassObject* obj, CPhXSceneManager* mgr);
 
 		//! destructor
 		virtual ~CPhXSceneNodeAnimator();
@@ -44,6 +45,8 @@ namespace scene
 
 	private:
 		CPhXMassObject* massObject;
+		CPhXSceneManager* sceneMgr;
+
 	};
 
 

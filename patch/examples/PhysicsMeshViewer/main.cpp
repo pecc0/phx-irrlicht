@@ -633,7 +633,7 @@ int main(int argc, char* argv[])
 			video::SColorf(1.0f,1.0f,1.0f),20000);
 	// add our media directory as "search path"
 	Device->getFileSystem()->addFolderFileArchive ( "../../media/" );
-
+	Device->getFileSystem()->addFolderFileArchive ( "../../export/" );
 	/*
 		The next step is to read the configuration file. It is stored in the xml
 		format and looks a little bit like this:

@@ -50,7 +50,7 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	
 	CPhXAtom* atom = new CPhXAtom(mass);
 	atom->ApplyCentralForce(initForce);
-	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(atom);
+	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(atom, this);
 
 	node->addAnimator(phxa);
 

@@ -4,6 +4,7 @@
 
 #include "CCameraSceneNode.h"
 #include "PhXSceneNodeAnimatorCameraFPS.h"
+#include "PhXSceneNodeAnimator.h"
 
 namespace irr
 {
@@ -37,14 +38,23 @@ CPhXSceneManager::~CPhXSceneManager(void)
 
 IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	const core::dimension2d<f32>& size, const core::vector3df& position, s32 id,
-	video::SColor colorTop, video::SColor colorBottom, f64 mass)
+	video::SColor colorTop, video::SColor colorBottom, f32 mass,
+	const core::vector3df& initForce)
 {
 	if (!parent)
 		parent = physicsNode;
 
-	IBillboardSceneNode* node = new phy::CPhXAtom(parent, this, size, position, id,
-		colorTop, colorBottom, mass);
+	IBillboardSceneNode* node = new CBillboardSceneNode(parent, this, id, position, size,
+		colorTop, colorBottom);
 	node->drop();
+	
+	CPhXAtom* atom = new CPhXAtom(mass);
+	atom->ApplyCentralForce(initForce);
+	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(atom);
+
+	node->addAnimator(phxa);
+
+	phxa->drop();
 
 	return node;
 }

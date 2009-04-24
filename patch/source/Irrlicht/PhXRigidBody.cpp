@@ -53,10 +53,10 @@ void CPhXRigidBody::UpdateVelocity(f32 step)
 void CPhXRigidBody::UpdatePosition(f32 step)
 {
 	//UpdateVelocity(step);
-	CPhXMassObject::UpdatePosition(step);
 	//m_node->setPosition(m_node->getPosition() + m_linearVel);
 	//m_node->getRotation()
 		//m_node->setRotation
+
 }
 
 

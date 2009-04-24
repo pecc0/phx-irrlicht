@@ -25,7 +25,7 @@ public:
 struct CPhXRigidBody : 
 	//public virtual IReferenceCounted,
 	public irr::scene::ISkinnedMesh::SJoint,
-	public CPhXMassObject
+	public virtual CPhXMassObject
 {
 public:
 	CPhXRigidBody(void);
@@ -38,8 +38,8 @@ public:
 	void ApplyTorque(const core::vector3df& torque);
 
 public:
-	void UpdateVelocity(f32 step);
-	void UpdatePosition(f32 step);
+	virtual void UpdateVelocity(f32 step);
+	virtual void UpdatePosition(f32 step);
 
 	//I will use the hierarchy created by the joints.
 	

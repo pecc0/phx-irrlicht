@@ -17,6 +17,8 @@ ISceneManager* createSceneManager(video::IVideoDriver* driver,
 	return new CPhXSceneManager(driver, fs, cursorcontrol, 0, guiEnvironment );
 }
 
+
+
 CPhXSceneManager::CPhXSceneManager(video::IVideoDriver* driver, io::IFileSystem* fs,
 		gui::ICursorControl* cursorControl, IMeshCache* cache,
 		gui::IGUIEnvironment* gui)
@@ -24,11 +26,13 @@ CPhXSceneManager::CPhXSceneManager(video::IVideoDriver* driver, io::IFileSystem*
 	
 {
 	MeshLoaderList.push_back(new CPhXFileLoader(this, FileSystem));
-
+	physicsNode = new CPhXSceneNode(this, this);
+	physicsNode->drop();
 }
 
 CPhXSceneManager::~CPhXSceneManager(void)
 {
+
 }
 
 IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
@@ -36,7 +40,7 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	video::SColor colorTop, video::SColor colorBottom, f64 mass)
 {
 	if (!parent)
-		parent = this;
+		parent = physicsNode;
 
 	IBillboardSceneNode* node = new phy::CPhXAtom(parent, this, size, position, id,
 		colorTop, colorBottom, mass);

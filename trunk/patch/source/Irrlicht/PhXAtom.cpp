@@ -17,5 +17,13 @@ CPhXAtom::CPhXAtom(irr::scene::ISceneNode* parent, irr::scene::ISceneManager* mg
 CPhXAtom::~CPhXAtom(void)
 {
 }
+
+void CPhXAtom::UpdatePosition(f32 step)
+{
+	CPhXMassObject::UpdatePosition(step);
+	
+	this->setPosition(this->getPosition() + this->m_linearVel);
+}
+
 }
 }

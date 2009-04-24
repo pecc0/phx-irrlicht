@@ -1,4 +1,4 @@
-#include "PhXSceneNode.h"
+#include "PhXSceneGlobalNode.h"
 #include "PhXMassObject.h"
 #include "PhXAtom.h"
 namespace irr
@@ -7,21 +7,21 @@ namespace scene
 {
 using namespace phy;
 
-CPhXSceneNode::CPhXSceneNode(ISceneNode* parent, ISceneManager* mgr, core::aabbox3d<f32> bounds):
+CPhXSceneGlobalNode::CPhXSceneGlobalNode(ISceneNode* parent, ISceneManager* mgr, core::aabbox3d<f32> bounds):
 	ISceneNode(parent, mgr), boundings(bounds)
 {
 }
 
-CPhXSceneNode::~CPhXSceneNode(void)
+CPhXSceneGlobalNode::~CPhXSceneGlobalNode(void)
 {
 }
 
-const core::aabbox3d<f32>& CPhXSceneNode::getBoundingBox() const
+const core::aabbox3d<f32>& CPhXSceneGlobalNode::getBoundingBox() const
 {
 	return boundings;
 }
 
-void CPhXSceneNode::OnAnimate(u32 timeMs)
+void CPhXSceneGlobalNode::OnAnimate(u32 timeMs)
 {
 	if (IsVisible)
 	{

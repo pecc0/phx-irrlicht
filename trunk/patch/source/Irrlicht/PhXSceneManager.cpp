@@ -27,7 +27,7 @@ CPhXSceneManager::CPhXSceneManager(video::IVideoDriver* driver, io::IFileSystem*
 	
 {
 	MeshLoaderList.push_back(new CPhXFileLoader(this, FileSystem));
-	physicsNode = new CPhXSceneNode(this, this);
+	physicsNode = new CPhXSceneGlobalNode(this, this);
 	physicsNode->drop();
 }
 

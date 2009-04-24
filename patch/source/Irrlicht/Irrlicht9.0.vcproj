@@ -3267,19 +3267,19 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PhXSceneGlobalNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PhXSceneGlobalNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PhXSceneManager.cpp"
 				>
 			</File>
 			<File
 				RelativePath=".\PhXSceneManager.h"
-				>
-			</File>
-			<File
-				RelativePath=".\PhXSceneNode.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\PhXSceneNode.h"
 				>
 			</File>
 			<File

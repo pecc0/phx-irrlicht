@@ -1,6 +1,6 @@
 #pragma once
 #include "CSceneManager.h"
-#include "PhXSceneNode.h"
+#include "PhXSceneGlobalNode.h"
 namespace irr
 {
 namespace scene

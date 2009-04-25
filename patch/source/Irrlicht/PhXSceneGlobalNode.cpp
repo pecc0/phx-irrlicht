@@ -1,6 +1,7 @@
 #include "PhXSceneGlobalNode.h"
 #include "PhXMassObject.h"
 #include "PhXAtom.h"
+#include "PhXSceneNodeAnimator.h"
 namespace irr
 {
 namespace scene
@@ -26,7 +27,7 @@ void CPhXSceneGlobalNode::OnAnimate(u32 timeMs)
 	if (IsVisible)
 	{
 		// animate this node with all animators
-
+/*
 		core::list<ISceneNodeAnimator*>::Iterator ait = Animators.begin();
 		while (ait != Animators.end())
 			{
@@ -41,7 +42,7 @@ void CPhXSceneGlobalNode::OnAnimate(u32 timeMs)
 		
 		// update absolute position
 		updateAbsolutePosition();
-
+*/
 		// perform the post render process on all children
 
 		core::list<ISceneNode*>::Iterator it = Children.begin();
@@ -55,6 +56,21 @@ void CPhXSceneGlobalNode::OnAnimate(u32 timeMs)
 				{
 					break;
 				}
+			}
+		}
+
+		it = Children.begin();
+		for (; it != Children.end(); ++it){
+			core::list<ISceneNode*>::Iterator j = it;
+			j++;
+			ISceneNode* icn = (*it);
+			for (; j != Children.end(); ++j)
+			{
+				ISceneNode* jcn = (*j);
+				((CPhXSceneNodeAnimator*)(icn->getAnimators().getLast().operator *()))->
+					massObject->UpdateCollision(
+					((CPhXSceneNodeAnimator*)(jcn->getAnimators().getLast().operator *()))->massObject,
+					icn->getAbsoluteTransformation(), jcn->getAbsoluteTransformation());
 			}
 		}
 	}

@@ -193,7 +193,8 @@ void loadModel(const c8* fn)
 	Model->setDebugDataVisible(scene::EDS_OFF);
 	
 
-	Device->getSceneManager()->addPhysicsRigidBody(20, 0, Device->getSceneManager(), -1);
+	Device->getSceneManager()->addPhysicsRigidBody(10, 5, 0, Device->getSceneManager(), -1,
+		core::vector3df(0,0,100));
 
 	// we need to uncheck the menu entries. would be cool to fake a menu event, but
 	// that's not so simple. so we do it brute force

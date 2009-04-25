@@ -12,8 +12,9 @@ CPhXJoint::~CPhXJoint()
 	}
 }
 */
-CPhXRigidBody::CPhXRigidBody(void)
+CPhXRigidBody::CPhXRigidBody(f32 mass)
 {
+	SetMass(mass);
 }
 
 CPhXRigidBody::~CPhXRigidBody(void)
@@ -50,9 +51,12 @@ void CPhXRigidBody::UpdateVelocity(f32 step)
 	m_totalTorque.set(0,0,0);
 }
 
-void CPhXRigidBody::UpdatePosition(f32 step)
+void CPhXRigidBody::UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation)
 {
 	//UpdateVelocity(step);
+	CPhXMassObject::UpdatePosition(step, inOutPosition, inOutRotation);
+
+	(*inOutRotation) += m_algularVel;
 	//m_node->setPosition(m_node->getPosition() + m_linearVel);
 	//m_node->getRotation()
 		//m_node->setRotation

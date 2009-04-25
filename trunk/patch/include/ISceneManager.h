@@ -1406,6 +1406,15 @@ namespace scene
 		{
 			return NULL;
 		}
+		virtual IMeshSceneNode* addPhysicsRigidBody(f32 size, ISceneNode* parent, 
+			ISceneManager* mgr, s32 id,
+			const core::vector3df& position = core::vector3df(0,0,0),
+			const core::vector3df& rotation = core::vector3df(0,0,0),
+			const core::vector3df& scale = core::vector3df(1.0f, 1.0f, 1.0f),
+			f32 mass=1., const core::vector3df& initForce = core::vector3df(0,0,0))
+		{
+			return NULL;
+		}
 	};
 
 

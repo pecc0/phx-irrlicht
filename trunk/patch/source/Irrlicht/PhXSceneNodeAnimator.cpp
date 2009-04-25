@@ -30,9 +30,10 @@ CPhXSceneNodeAnimator::~CPhXSceneNodeAnimator()
 void CPhXSceneNodeAnimator::animateNode(ISceneNode* node, u32 timeMs)
 {
 	core::vector3df pos = node->getPosition();
-	massObject->UpdatePosition(1, &pos, NULL);
+	core::vector3df rot = node->getRotation();
+	massObject->UpdatePosition(1, &pos, &rot);
 	node->setPosition(pos);
-	
+	node->setRotation(rot);
 }
 
 

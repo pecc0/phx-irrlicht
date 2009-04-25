@@ -24,12 +24,12 @@ public:
 //These "joints" are actually "bones"
 struct CPhXRigidBody : 
 	//public virtual IReferenceCounted,
-	public CPhXMassObject,
-	public irr::scene::ISkinnedMesh::SJoint
+	public CPhXMassObject
+	//public irr::scene::ISkinnedMesh::SJoint
 	
 {
 public:
-	CPhXRigidBody(void);
+	CPhXRigidBody(f32 mass);
 	~CPhXRigidBody(void);
 
 
@@ -40,7 +40,7 @@ public:
 
 public:
 	virtual void UpdateVelocity(f32 step);
-	virtual void UpdatePosition(f32 step);
+	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
 
 	//I will use the hierarchy created by the joints.
 	

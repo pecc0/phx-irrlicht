@@ -3267,6 +3267,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PhXRigidBodySceneNode.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PhXRigidBodySceneNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PhXSceneGlobalNode.cpp"
 				>
 			</File>

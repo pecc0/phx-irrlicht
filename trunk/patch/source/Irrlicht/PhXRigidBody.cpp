@@ -1,4 +1,6 @@
 #include "PhXRigidBody.h"
+#include "os.h"
+#include "PhXFormattedString.h"
 namespace irr
 {
 namespace phy
@@ -12,7 +14,8 @@ CPhXJoint::~CPhXJoint()
 	}
 }
 */
-CPhXRigidBody::CPhXRigidBody(f32 mass)
+CPhXRigidBody::CPhXRigidBody(f32 mass, f32 length, f32 width):
+	m_length(length), m_width(width)
 {
 	SetMass(mass);
 }
@@ -45,7 +48,7 @@ void CPhXRigidBody::UpdateVelocity(f32 step)
 {
 	CPhXMassObject::UpdateVelocity(step);
 	//m_linearVel += (step * ((f32)m_massInv)) * m_totalForce;
-	m_algularVel += (step * m_massInv) * m_totalTorque;
+	m_algularVel = m_algularVel + m_totalTorque*(step * m_massInv);
 
 	
 	m_totalTorque.set(0,0,0);
@@ -55,14 +58,31 @@ void CPhXRigidBody::UpdatePosition(f32 step, core::vector3df* inOutPosition, cor
 {
 	//UpdateVelocity(step);
 	CPhXMassObject::UpdatePosition(step, inOutPosition, inOutRotation);
+	(*inOutRotation) *= core::DEGTORAD;
+	irr::core::quaternion rotation(*inOutRotation);
+	irr::core::quaternion avel;
+	f32 length = m_algularVel.getLengthSQ();
+	if (length != 0)
+	{
+		avel.fromAngleAxis(sqrt(length), m_algularVel * core::reciprocal_squareroot(length));
+		//avel.normalize();
+		rotation = avel * rotation;
 
-	(*inOutRotation) += m_algularVel;
+		rotation.toEuler(*inOutRotation);
+		(*inOutRotation) *= core::RADTODEG;
+	}
+	/*
+	os::Printer::log(core::PhXFormattedString("%f,%f,%f\n",
+		inOutRotation->X,inOutRotation->Y,inOutRotation->Z).c_str());
+	*/
 	//m_node->setPosition(m_node->getPosition() + m_linearVel);
 	//m_node->getRotation()
 		//m_node->setRotation
 
 }
-
+void CPhXRigidBody::UpdateCollision(CPhXMassObject * other, const core::matrix4& my, const core::matrix4& others)
+{
+}
 
 }
 }

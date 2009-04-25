@@ -43,8 +43,10 @@ namespace scene
 		this. */
 		virtual ISceneNodeAnimator* createClone(ISceneNode* node, ISceneManager* newManager=0);
 
-	private:
+		//TODO: getter
 		CPhXMassObject* massObject;
+	private:
+		
 		CPhXSceneManager* sceneMgr;
 
 	};

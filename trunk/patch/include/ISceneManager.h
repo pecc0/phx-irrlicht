@@ -1406,7 +1406,7 @@ namespace scene
 		{
 			return NULL;
 		}
-		virtual IMeshSceneNode* addPhysicsRigidBody(f32 size, ISceneNode* parent, 
+		virtual IMeshSceneNode* addPhysicsRigidBody(f32 length, f32 width, ISceneNode* parent, 
 			ISceneManager* mgr, s32 id,
 			const core::vector3df& position = core::vector3df(0,0,0),
 			const core::vector3df& rotation = core::vector3df(0,0,0),

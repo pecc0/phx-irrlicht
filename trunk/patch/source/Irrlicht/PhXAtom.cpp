@@ -12,5 +12,10 @@ CPhXAtom::~CPhXAtom(void)
 {
 }
 
+void CPhXAtom::UpdateCollision(CPhXMassObject * other, const core::matrix4& my, const core::matrix4& others)
+{
+
+}
+
 }
 }

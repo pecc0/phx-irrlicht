@@ -22,14 +22,14 @@ public:
 
 //Generally the rigid body is not a joint...
 //These "joints" are actually "bones"
-struct CPhXRigidBody : 
+class CPhXRigidBody : 
 	//public virtual IReferenceCounted,
 	public CPhXMassObject
 	//public irr::scene::ISkinnedMesh::SJoint
 	
 {
 public:
-	CPhXRigidBody(f32 mass);
+	CPhXRigidBody(f32 mass, f32 length, f32 width);
 	~CPhXRigidBody(void);
 
 
@@ -42,16 +42,20 @@ public:
 	virtual void UpdateVelocity(f32 step);
 	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
 
-	//I will use the hierarchy created by the joints.
-	
-	CPhXRigidBody* parent;
+	virtual void UpdateCollision(CPhXMassObject * other, const core::matrix4& my, const core::matrix4& others);
+
+	//CPhXRigidBody* parent;
+
+	//TODO: getters / setters
+	f32 m_length;
+	f32 m_width;
 private:
 	
 	irr::core::vector3df m_totalTorque;
 
-	core::vector3df m_algularVel;
+	irr::core::vector3df m_algularVel;
 	
-	
+
 };
 }
 }

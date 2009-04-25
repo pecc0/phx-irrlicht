@@ -5,7 +5,7 @@
 #include "CCameraSceneNode.h"
 #include "PhXSceneNodeAnimatorCameraFPS.h"
 #include "PhXSceneNodeAnimator.h"
-#include "CCubeSceneNode.h"
+#include "PhXRigidBodySceneNode.h"
 
 namespace irr
 {
@@ -57,7 +57,7 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	return node;
 }
 
-IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 size, ISceneNode* parent, 
+IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 length, f32 width, ISceneNode* parent, 
 	ISceneManager* mgr, s32 id,
 	const core::vector3df& position,
 	const core::vector3df& rotation,
@@ -67,16 +67,21 @@ IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 size, ISceneNode* pare
 	if (!parent)
 		parent = this;
 
-	IMeshSceneNode* node = new CCubeSceneNode(size, parent, this, id, position, rotation, scale);
+	CPhXRigidBody* body = new CPhXRigidBody(mass,length,width);
+
+	IMeshSceneNode* node = new CPhXRigidBodySceneNode(body, parent, this, id, position, rotation, scale);
 	node->drop();
 
-	CPhXRigidBody* body = new CPhXRigidBody(mass);
+	
 	body->ApplyCentralForce(initForce);
-	body->ApplyTorque(irr::core::vector3df(0,1,0));
+	//body->ApplyTorque(irr::core::vector3df(0.01,0.01,0));
 	//ApplyTorque
 	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(body, this);
 
 	node->addAnimator(phxa);
+	node->getMaterial(0).MaterialType = video::EMT_TRANSPARENT_ADD_COLOR;
+	node->getMaterial(0).EmissiveColor = video::SColor(0xFF, 0xA0, 0xA0, 0xA0);
+	node->getMaterial(0).Wireframe = true;
 
 	phxa->drop();
 

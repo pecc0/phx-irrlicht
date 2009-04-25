@@ -12,6 +12,9 @@ public:
 	CPhXAtom(f32 mass=1.);
 	~CPhXAtom(void);
 
+	virtual void UpdateCollision(CPhXMassObject * other, const core::matrix4& my, const core::matrix4& others);
+
+
 };
 }
 }

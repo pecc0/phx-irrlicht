@@ -18,7 +18,7 @@ public:
 	virtual void UpdateVelocity(f32 step);
 	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
 
-
+	virtual void UpdateCollision(CPhXMassObject *, const core::matrix4& my, const core::matrix4& others) = 0;
 protected:
 	f32 m_mass;
 	f32 m_massInv;

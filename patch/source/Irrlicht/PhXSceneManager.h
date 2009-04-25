@@ -19,6 +19,13 @@ public:
 			video::SColor colorTop = 0xFFFFFFFF, video::SColor colorBottom = 0xFFFFFFFF,
 			f32 mass=1., const core::vector3df& initForce = core::vector3df(0,0,0));
 
+	virtual IMeshSceneNode* addPhysicsRigidBody(f32 size, ISceneNode* parent, 
+			ISceneManager* mgr, s32 id,
+			const core::vector3df& position = core::vector3df(0,0,0),
+			const core::vector3df& rotation = core::vector3df(0,0,0),
+			const core::vector3df& scale = core::vector3df(1.0f, 1.0f, 1.0f),
+			f32 mass=1., const core::vector3df& initForce = core::vector3df(0,0,0));
+
 	virtual ICameraSceneNode* addCameraSceneNodeFPS(ISceneNode* parent = 0,
 			f32 rotateSpeed = 100.0f, f32 moveSpeed = .5f, s32 id=-1,
 			SKeyMap* keyMapArray=0, s32 keyMapSize=0, bool noVerticalMovement=false,

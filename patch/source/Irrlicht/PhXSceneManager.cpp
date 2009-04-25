@@ -1,10 +1,11 @@
 #include "PhXSceneManager.h"
 #include "PhXFileLoader.h"
 #include "PhXAtom.h"
-
+#include "PhXRigidBody.h"
 #include "CCameraSceneNode.h"
 #include "PhXSceneNodeAnimatorCameraFPS.h"
 #include "PhXSceneNodeAnimator.h"
+#include "CCubeSceneNode.h"
 
 namespace irr
 {
@@ -18,13 +19,10 @@ ISceneManager* createSceneManager(video::IVideoDriver* driver,
 	return new CPhXSceneManager(driver, fs, cursorcontrol, 0, guiEnvironment );
 }
 
-
-
 CPhXSceneManager::CPhXSceneManager(video::IVideoDriver* driver, io::IFileSystem* fs,
 		gui::ICursorControl* cursorControl, IMeshCache* cache,
 		gui::IGUIEnvironment* gui)
 : CSceneManager(driver, fs, cursorControl, cache, gui)
-	
 {
 	MeshLoaderList.push_back(new CPhXFileLoader(this, FileSystem));
 	physicsNode = new CPhXSceneGlobalNode(this, this);
@@ -51,6 +49,32 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	CPhXAtom* atom = new CPhXAtom(mass);
 	atom->ApplyCentralForce(initForce);
 	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(atom, this);
+
+	node->addAnimator(phxa);
+
+	phxa->drop();
+
+	return node;
+}
+
+IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 size, ISceneNode* parent, 
+	ISceneManager* mgr, s32 id,
+	const core::vector3df& position,
+	const core::vector3df& rotation,
+	const core::vector3df& scale,
+	f32 mass, const core::vector3df& initForce)
+{
+	if (!parent)
+		parent = this;
+
+	IMeshSceneNode* node = new CCubeSceneNode(size, parent, this, id, position, rotation, scale);
+	node->drop();
+
+	CPhXRigidBody* body = new CPhXRigidBody(mass);
+	body->ApplyCentralForce(initForce);
+	body->ApplyTorque(irr::core::vector3df(0,1,0));
+	//ApplyTorque
+	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(body, this);
 
 	node->addAnimator(phxa);
 

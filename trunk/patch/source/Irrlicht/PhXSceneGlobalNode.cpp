@@ -69,8 +69,7 @@ void CPhXSceneGlobalNode::OnAnimate(u32 timeMs)
 				ISceneNode* jcn = (*j);
 				((CPhXSceneNodeAnimator*)(icn->getAnimators().getLast().operator *()))->
 					massObject->UpdateCollision(
-					((CPhXSceneNodeAnimator*)(jcn->getAnimators().getLast().operator *()))->massObject,
-					icn->getAbsoluteTransformation(), jcn->getAbsoluteTransformation());
+					((CPhXSceneNodeAnimator*)(jcn->getAnimators().getLast().operator *()))->massObject);
 			}
 		}
 	}

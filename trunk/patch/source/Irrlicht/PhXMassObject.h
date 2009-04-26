@@ -18,7 +18,13 @@ public:
 	virtual void UpdateVelocity(f32 step);
 	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
 
-	virtual void UpdateCollision(CPhXMassObject *, const core::matrix4& my, const core::matrix4& others) = 0;
+	virtual void UpdateCollision(CPhXMassObject * other) = 0;
+
+	virtual void CollideWithBox(CPhXMassObject* other, const irr::core::aabbox3df& box) = 0;
+	virtual void CollideWithPoint(CPhXMassObject* other, irr::core::vector3df& pt) = 0;
+
+	scene::ISceneNode* sceneNode;
+
 protected:
 	f32 m_mass;
 	f32 m_massInv;

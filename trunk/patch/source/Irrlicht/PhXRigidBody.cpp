@@ -80,8 +80,38 @@ void CPhXRigidBody::UpdatePosition(f32 step, core::vector3df* inOutPosition, cor
 		//m_node->setRotation
 
 }
-void CPhXRigidBody::UpdateCollision(CPhXMassObject * other, const core::matrix4& my, const core::matrix4& others)
+void CPhXRigidBody::UpdateCollision(CPhXMassObject * other)
 {
+	core::aabbox3df absoluteBox(collisionBox);
+	sceneNode->getAbsoluteTransformation().transformBox(absoluteBox);
+	other->CollideWithBox(this, absoluteBox);
+}
+void CPhXRigidBody::CollideWithBox(irr::phy::CPhXMassObject *other, const irr::core::aabbox3df& box)
+{
+	//TODO: implement
+}
+void CPhXRigidBody::CollideWithPoint(irr::phy::CPhXMassObject *other, irr::core::vector3df &pt)
+{
+	core::matrix4 mat = sceneNode->getAbsoluteTransformation();
+	//TODO: precach the inversed matrix
+	core::matrix4 invmat;
+	mat.getInverse(invmat);
+	
+
+
+	irr::core::vector3df ptLocalCoord;
+
+	invmat.transformVect(ptLocalCoord, pt);
+
+//	os::Printer::log(core::PhXFormattedString("collide: (%f,%f,%f)\n",
+		//ptLocalCoord.X,ptLocalCoord.Y,ptLocalCoord.Z).c_str());
+
+	if (collisionBox.isPointInside(ptLocalCoord))
+	{
+		os::Printer::log(core::PhXFormattedString("inside: (%f,%f,%f)\n",
+			pt.X,pt.Y,pt.Z).c_str());
+	}
+
 }
 
 }

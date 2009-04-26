@@ -66,25 +66,38 @@ void CPhXRigidBodySceneNode::setSize()
 	// Start setting vertices from index 0 to deal with this method being called multiple times.
 	buf->Vertices.set_used(0);
 	f32 len = theBody->m_length / theBody->m_width;
-	buf->Vertices.push_back(video::S3DVertex(0,0,0, -1,-1,-1, clr, 0, 1));
-	buf->Vertices.push_back(video::S3DVertex(len,0,0,  1,-1,-1, clr, 1, 1));
-	buf->Vertices.push_back(video::S3DVertex(len,1,0,  1, 1,-1, clr, 1, 0));
-	buf->Vertices.push_back(video::S3DVertex(0,1,0, -1, 1,-1, clr, 0, 0));
-	buf->Vertices.push_back(video::S3DVertex(len,0,1,  1,-1, 1, clr, 0, 1));
-	buf->Vertices.push_back(video::S3DVertex(len,1,1,  1, 1, 1, clr, 0, 0));
-	buf->Vertices.push_back(video::S3DVertex(0,1,1, -1, 1, 1, clr, 1, 0));
-	buf->Vertices.push_back(video::S3DVertex(0,0,1, -1,-1, 1, clr, 1, 1));
-	buf->Vertices.push_back(video::S3DVertex(0,1,1, -1, 1, 1, clr, 0, 1));
-	buf->Vertices.push_back(video::S3DVertex(0,1,0, -1, 1,-1, clr, 1, 1));
-	buf->Vertices.push_back(video::S3DVertex(len,0,1,  1,-1, 1, clr, 1, 0));
-	buf->Vertices.push_back(video::S3DVertex(len,0,0,  1,-1,-1, clr, 0, 0));
+	
+	core::vector3df* pmi = &(theBody->collisionBox.MinEdge);
+	core::vector3df* pma = &(theBody->collisionBox.MaxEdge);
+
+	pmi->set(0,0,0);
+	pma->set(len,1,1);
+
+	*pmi -= core::vector3df(0.5f, 0.5f, 0.5f);
+	*pma -= core::vector3df(0.5f, 0.5f, 0.5f);
+
+	*pmi *= theBody->m_width;
+	*pma *= theBody->m_width;
+
+	buf->Vertices.push_back(video::S3DVertex(pmi->X,pmi->Y,pmi->Z, -1,-1,-1, clr, 0, 1));
+	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pmi->Z,  1,-1,-1, clr, 1, 1));
+	buf->Vertices.push_back(video::S3DVertex(pma->X,pma->Y,pmi->Z,  1, 1,-1, clr, 1, 0));
+	buf->Vertices.push_back(video::S3DVertex(pmi->X,pma->Y,pmi->Z, -1, 1,-1, clr, 0, 0));
+	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pma->Z,  1,-1, 1, clr, 0, 1));
+	buf->Vertices.push_back(video::S3DVertex(pma->X,pma->Y,pma->Z,  1, 1, 1, clr, 0, 0));
+	buf->Vertices.push_back(video::S3DVertex(pmi->X,pma->Y,pma->Z, -1, 1, 1, clr, 1, 0));
+	buf->Vertices.push_back(video::S3DVertex(pmi->X,pmi->Y,pma->Z, -1,-1, 1, clr, 1, 1));
+	buf->Vertices.push_back(video::S3DVertex(pmi->X,pma->Y,pma->Z, -1, 1, 1, clr, 0, 1));
+	buf->Vertices.push_back(video::S3DVertex(pmi->X,pma->Y,pmi->Z, -1, 1,-1, clr, 1, 1));
+	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pma->Z,  1,-1, 1, clr, 1, 0));
+	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pmi->Z,  1,-1,-1, clr, 0, 0));
 
 	buf->BoundingBox.reset(0,0,0); 
 
 	for (u32 i=0; i<12; ++i)
 	{
-		buf->Vertices[i].Pos -= core::vector3df(0.5f, 0.5f, 0.5f);
-		buf->Vertices[i].Pos *= theBody->m_width;
+		//buf->Vertices[i].Pos -= core::vector3df(0.5f, 0.5f, 0.5f);
+		//buf->Vertices[i].Pos *= theBody->m_width;
 		buf->BoundingBox.addInternalPoint(buf->Vertices[i].Pos);
 	}
 }

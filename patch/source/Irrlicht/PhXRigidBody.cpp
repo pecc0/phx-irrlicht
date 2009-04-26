@@ -50,7 +50,7 @@ void CPhXRigidBody::UpdateVelocity(f32 step)
 	//m_linearVel += (step * ((f32)m_massInv)) * m_totalForce;
 	m_algularVel = m_algularVel + m_totalTorque*(step * m_massInv);
 
-	
+
 	m_totalTorque.set(0,0,0);
 }
 
@@ -90,13 +90,13 @@ void CPhXRigidBody::CollideWithBox(irr::phy::CPhXMassObject *other, const irr::c
 {
 	//TODO: implement
 }
-void CPhXRigidBody::CollideWithPoint(irr::phy::CPhXMassObject *other, irr::core::vector3df &pt)
+void CPhXRigidBody::CollideWithPoint(irr::phy::CPhXMassObject *other, const irr::core::vector3df &pt)
 {
 	core::matrix4 mat = sceneNode->getAbsoluteTransformation();
 	//TODO: precach the inversed matrix
 	core::matrix4 invmat;
 	mat.getInverse(invmat);
-	
+
 
 
 	irr::core::vector3df ptLocalCoord;

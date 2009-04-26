@@ -42,13 +42,19 @@ public:
 	virtual void UpdateVelocity(f32 step);
 	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
 
-	virtual void UpdateCollision(CPhXMassObject * other, const core::matrix4& my, const core::matrix4& others);
+	virtual void UpdateCollision(CPhXMassObject * other);
+
+	virtual void CollideWithBox(CPhXMassObject* other, const irr::core::aabbox3df& box);
+	virtual void CollideWithPoint(CPhXMassObject* other, irr::core::vector3df& pt);
 
 	//CPhXRigidBody* parent;
 
 	//TODO: getters / setters
 	f32 m_length;
 	f32 m_width;
+
+	core::aabbox3df collisionBox;
+
 private:
 	
 	irr::core::vector3df m_totalTorque;

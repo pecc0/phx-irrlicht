@@ -556,7 +556,7 @@ public:
 					core::vector3df target = (camera->getTarget() - camera->getAbsolutePosition());
 					target.setLength(50);
 					core::vector3df force = target;
-					force.setLength(1);
+					force.setLength(0.01);
 
 					scene::IBillboardSceneNode * cn;
 					cn = Device->getSceneManager()->addPhysicsAtom(0, 

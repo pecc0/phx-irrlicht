@@ -50,6 +50,8 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	atom->ApplyCentralForce(initForce);
 	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(atom, this);
 
+	atom->sceneNode = node;
+
 	node->addAnimator(phxa);
 
 	phxa->drop();
@@ -65,14 +67,15 @@ IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 length, f32 width, ISc
 	f32 mass, const core::vector3df& initForce)
 {
 	if (!parent)
-		parent = this;
+		parent = physicsNode;
 
 	CPhXRigidBody* body = new CPhXRigidBody(mass,length,width);
 
 	IMeshSceneNode* node = new CPhXRigidBodySceneNode(body, parent, this, id, position, rotation, scale);
 	node->drop();
 
-	
+	body->sceneNode = node;
+
 	body->ApplyCentralForce(initForce);
 	//body->ApplyTorque(irr::core::vector3df(0.01,0.01,0));
 	//ApplyTorque

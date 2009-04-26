@@ -20,7 +20,7 @@ void CPhXAtom::CollideWithBox(irr::phy::CPhXMassObject *other, const irr::core::
 {
 	UpdateCollision(other);
 }
-void CPhXAtom::CollideWithPoint(irr::phy::CPhXMassObject *other, irr::core::vector3df &pt)
+void CPhXAtom::CollideWithPoint(irr::phy::CPhXMassObject *other, const irr::core::vector3df &pt)
 {
 	//nothing
 }

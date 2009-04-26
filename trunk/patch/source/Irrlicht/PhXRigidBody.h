@@ -8,13 +8,13 @@ namespace phy
 {
 
 /*
-class CPhXJoint: 
+class CPhXJoint:
 	public irr::scene::ISkinnedMesh::SJoint
 {
 public:
 	CPhXJoint():body(0){}
 	virtual ~CPhXJoint();
-	
+
 	CPhXRigidBody* body;
 };
 */
@@ -22,11 +22,11 @@ public:
 
 //Generally the rigid body is not a joint...
 //These "joints" are actually "bones"
-class CPhXRigidBody : 
+class CPhXRigidBody :
 	//public virtual IReferenceCounted,
 	public CPhXMassObject
 	//public irr::scene::ISkinnedMesh::SJoint
-	
+
 {
 public:
 	CPhXRigidBody(f32 mass, f32 length, f32 width);
@@ -35,7 +35,7 @@ public:
 
 public:
 	void ApplyForce(const core::vector3df& force, const core::vector3df& pos);
-	
+
 	void ApplyTorque(const core::vector3df& torque);
 
 public:
@@ -45,7 +45,7 @@ public:
 	virtual void UpdateCollision(CPhXMassObject * other);
 
 	virtual void CollideWithBox(CPhXMassObject* other, const irr::core::aabbox3df& box);
-	virtual void CollideWithPoint(CPhXMassObject* other, irr::core::vector3df& pt);
+	virtual void CollideWithPoint(CPhXMassObject* other, const irr::core::vector3df& pt);
 
 	//CPhXRigidBody* parent;
 
@@ -56,11 +56,11 @@ public:
 	core::aabbox3df collisionBox;
 
 private:
-	
+
 	irr::core::vector3df m_totalTorque;
 
 	irr::core::vector3df m_algularVel;
-	
+
 
 };
 }

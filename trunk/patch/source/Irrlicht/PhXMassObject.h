@@ -21,7 +21,7 @@ public:
 	virtual void UpdateCollision(CPhXMassObject * other) = 0;
 
 	virtual void CollideWithBox(CPhXMassObject* other, const irr::core::aabbox3df& box) = 0;
-	virtual void CollideWithPoint(CPhXMassObject* other, irr::core::vector3df& pt) = 0;
+	virtual void CollideWithPoint(CPhXMassObject* other, const irr::core::vector3df& pt) = 0;
 
 	scene::ISceneNode* sceneNode;
 

@@ -179,7 +179,7 @@ void loadModel(const c8* fn)
 	}
 
 	// set default material properties
-	
+
 	if (Octree)
 		Model = Device->getSceneManager()->addOctTreeSceneNode(m->getMesh(0));
 	else
@@ -191,7 +191,7 @@ void loadModel(const c8* fn)
 	Model->setMaterialFlag(video::EMF_LIGHTING, false);
 //	Model->setMaterialFlag(video::EMF_BACK_FACE_CULLING, false);
 	Model->setDebugDataVisible(scene::EDS_OFF);
-	
+
 
 	Device->getSceneManager()->addPhysicsRigidBody(10, 5, 0, Device->getSceneManager(), -1,
 		core::vector3df(0,0,100));
@@ -530,7 +530,7 @@ public:
 					{
 						scene::IMeshWriter* mw = Device->getSceneManager()->createMeshWriter(irr::scene::EMWT_IRR_MESH);
 						io::IWriteFile* file = env->getFileSystem()->createAndWriteFile("out.irrmesh");
-						
+
 						mw->writeMesh(file, ((scene::IAnimatedMeshSceneNode*)Model)->getMesh());
 
 						file->drop();
@@ -544,7 +544,7 @@ public:
 				break;
 			}
 		}
-		
+
 		if (event.EventType == EET_MOUSE_INPUT_EVENT)
 		{
 			if (event.MouseInput.Event == EMIE_LMOUSE_PRESSED_DOWN)
@@ -559,7 +559,7 @@ public:
 					force.setLength(0.01);
 
 					scene::IBillboardSceneNode * cn;
-					cn = Device->getSceneManager()->addPhysicsAtom(0, 
+					cn = Device->getSceneManager()->addPhysicsAtom(0,
 						core::dimension2d<f32>(10.0f, 10.0f),
 						pos + target, -1,
 						0xFFFFFFFF, 0xFFFFFFFF, 1., force);
@@ -573,7 +573,7 @@ public:
 		}
 		return false;
 	}
-	
+
 };
 
 
@@ -857,7 +857,7 @@ int main(int argc, char* argv[])
 		{EKA_STRAFE_LEFT, KEY_KEY_A},
 		{EKA_STRAFE_RIGHT, KEY_KEY_D},
 		{EKA_FLY_UP, KEY_SPACE},
-		{EKA_FLY_DOWN, KEY_SHIFT},
+		{EKA_FLY_DOWN, KEY_LSHIFT},
 	};
 	( (scene::ISceneNodeAnimatorCameraFPS*) (*(Camera[1]->getAnimators().begin())) )->
 		setKeyMap(keyMap, 6);

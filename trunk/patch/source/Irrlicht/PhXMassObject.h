@@ -16,7 +16,7 @@ public:
 	void SetMass(f32 mass);
 
 	virtual void UpdateVelocity(f32 step);
-	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
+	virtual void UpdatePosition(f32 step);
 
 	virtual void UpdateCollision(CPhXMassObject * other) = 0;
 
@@ -25,7 +25,18 @@ public:
 
 	scene::ISceneNode* sceneNode;
 
-protected:
+	core::vector3df getLinearVelocity(){
+		return m_linearVel;
+	}
+	f32 getMass(){
+		return m_mass;
+	}
+
+	f32 getInvMass(){
+		return m_massInv;
+	}
+
+private:
 	f32 m_mass;
 	f32 m_massInv;
 

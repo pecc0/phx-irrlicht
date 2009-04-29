@@ -61,10 +61,10 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 
 IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 length, f32 width, ISceneNode* parent, 
 	ISceneManager* mgr, s32 id,
+	f32 mass, const core::vector3df& initForce,
 	const core::vector3df& position,
 	const core::vector3df& rotation,
-	const core::vector3df& scale,
-	f32 mass, const core::vector3df& initForce)
+	const core::vector3df& scale)
 {
 	if (!parent)
 		parent = physicsNode;

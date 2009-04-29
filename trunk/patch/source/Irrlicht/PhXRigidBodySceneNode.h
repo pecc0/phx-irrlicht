@@ -69,12 +69,20 @@ namespace scene
 		virtual bool isReadOnlyMaterials() const { return false; }
 
 		
-	//	virtual core::matrix4 getRelativeTransformation() const;
+		virtual core::matrix4 getRelativeTransformation() const;
 		
-	//	virtual void updateRelativeTransform();
+		virtual void updateRelativeTransform();
 
+		virtual void updateAbsolutePosition();
+
+		virtual void setRotation(const core::vector3df& rotation) {
+			//ISceneNode::setRotation(rotation);
+			rotationQuaternion.set(rotation * core::DEGTORAD);
+		}
 		//TODO: using quaternion for representing the rotation
 		core::quaternion rotationQuaternion;
+
+		core::matrix4 absoluteTransformInv;
 
 	private:
 		void setSize();
@@ -85,7 +93,6 @@ namespace scene
 
 		core::matrix4 relativeTransform;
 
-		core::matrix4 relativeTransformInv;
 	};
 
 } // end namespace scene

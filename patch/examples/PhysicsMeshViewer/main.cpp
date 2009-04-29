@@ -6,7 +6,7 @@ scene management of Irrlicht. The tutorial show how to create and use Buttons,
 Windows, Toolbars, Menus, ComboBoxes, Tabcontrols, Editboxes, Images,
 MessageBoxes, SkyBoxes, and how to parse XML files with the integrated XML
 reader of the engine.
-
+ 
 We start like in most other tutorials: Include all nesessary header files, add
 a comment to let the engine be linked with the right .lib file in Visual
 Studio, and declare some global variables. We also add two 'using namespace'
@@ -193,8 +193,8 @@ void loadModel(const c8* fn)
 	Model->setDebugDataVisible(scene::EDS_OFF);
 
 
-	Device->getSceneManager()->addPhysicsRigidBody(10, 5, 0, Device->getSceneManager(), -1,
-		core::vector3df(0,0,100));
+	Device->getSceneManager()->addPhysicsRigidBody(100, 50, 0, Device->getSceneManager(), -1,
+		10, core::vector3df(0,0,0), core::vector3df(0,0,100));
 
 	// we need to uncheck the menu entries. would be cool to fake a menu event, but
 	// that's not so simple. so we do it brute force
@@ -554,13 +554,13 @@ public:
 					scene::ICameraSceneNode* camera = Device->getSceneManager()->getActiveCamera();
 					core::vector3df pos = camera->getPosition();
 					core::vector3df target = (camera->getTarget() - camera->getAbsolutePosition());
-					target.setLength(50);
+					target.setLength(1);
 					core::vector3df force = target;
-					force.setLength(0.01);
+					force.setLength(0.1);
 
 					scene::IBillboardSceneNode * cn;
 					cn = Device->getSceneManager()->addPhysicsAtom(0,
-						core::dimension2d<f32>(10.0f, 10.0f),
+						core::dimension2d<f32>(1.0f, 1.0f),
 						pos + target, -1,
 						0xFFFFFFFF, 0xFFFFFFFF, 1., force);
 					cn->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR );
@@ -858,9 +858,10 @@ int main(int argc, char* argv[])
 		{EKA_STRAFE_RIGHT, KEY_KEY_D},
 		{EKA_FLY_UP, KEY_SPACE},
 		{EKA_FLY_DOWN, KEY_LSHIFT},
-	};
+		{EKA_FLY_DOWN, KEY_SHIFT},
+	}; 
 	( (scene::ISceneNodeAnimatorCameraFPS*) (*(Camera[1]->getAnimators().begin())) )->
-		setKeyMap(keyMap, 6);
+		setKeyMap(keyMap, 7);
 
 	Camera[1]->setFarValue(20000.f);
 	Camera[1]->setPosition(core::vector3df(0,0,-70));

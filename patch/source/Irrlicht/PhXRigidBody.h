@@ -2,8 +2,13 @@
 #include <irrlicht.h>
 #include "CSkinnedMesh.h"
 #include "PhXMassObject.h"
+
+
+
 namespace irr
 {
+using namespace scene;
+
 namespace phy
 {
 
@@ -40,7 +45,7 @@ public:
 
 public:
 	virtual void UpdateVelocity(f32 step);
-	virtual void UpdatePosition(f32 step, core::vector3df* inOutPosition, core::vector3df* inOutRotation);
+	virtual void UpdatePosition(f32 step);
 
 	virtual void UpdateCollision(CPhXMassObject * other);
 
@@ -57,9 +62,9 @@ public:
 
 private:
 
-	irr::core::vector3df m_totalTorque;
+	irr::core::quaternion m_totalTorque;
 
-	irr::core::vector3df m_algularVel;
+	irr::core::quaternion m_algularVel;
 
 
 };

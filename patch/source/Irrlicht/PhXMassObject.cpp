@@ -25,16 +25,15 @@ void CPhXMassObject::ApplyCentralForce(const core::vector3df& force)
 void CPhXMassObject::UpdateVelocity(f32 step)
 {
 
-	m_linearVel += (step * ((f32)m_massInv)) * m_totalForce;
+	m_linearVel += (step * ((f32) getInvMass())) * m_totalForce;
 
 	m_totalForce.set(0,0,0);
 }
 
-void CPhXMassObject::UpdatePosition(f32 step, core::vector3df* inOutPosition,
-									core::vector3df* inOutRotation)
+void CPhXMassObject::UpdatePosition(f32 step)
 {
 	UpdateVelocity(step);
-	(*inOutPosition) += m_linearVel;
+	sceneNode->setPosition(sceneNode->getPosition() + m_linearVel);
 
 	//m_node->setPosition(m_node->getPosition() + m_linearVel);
 	//m_node->getRotation()

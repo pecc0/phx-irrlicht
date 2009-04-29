@@ -189,7 +189,7 @@ ISceneNode* CPhXRigidBodySceneNode::clone(ISceneNode* newParent, ISceneManager* 
 	return nb;
 }
 
-/*
+
 core::matrix4 CPhXRigidBodySceneNode::getRelativeTransformation() const
 {
 	return relativeTransform;
@@ -231,7 +231,13 @@ void CPhXRigidBodySceneNode::updateRelativeTransform()
 		mat[11] *= RelativeScale.Z;
 	}
 }
-*/
+
+void CPhXRigidBodySceneNode::updateAbsolutePosition()
+{
+	IMeshSceneNode::updateAbsolutePosition();
+	AbsoluteTransformation.getInverse(absoluteTransformInv);
+}
+
 } // end namespace scene
 } // end namespace irr
 

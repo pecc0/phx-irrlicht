@@ -60,7 +60,8 @@ public:
 
 	core::aabbox3df collisionBox;
 
-private:
+//TODO: testing only !!! - change to private
+public:
 
 	irr::core::quaternion m_totalTorque;
 

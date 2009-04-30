@@ -33,6 +33,8 @@ CPhXRigidBodySceneNode::CPhXRigidBodySceneNode(CPhXRigidBody* body, ISceneNode* 
 		const core::vector3df& rotation, const core::vector3df& scale)
 		: IMeshSceneNode(parent, mgr, id, position, rotation, scale), theBody(body)
 {
+	CPhXRigidBodySceneNode::setRotation(rotation);
+
 	#ifdef _DEBUG
 	setDebugName("CPhXRigidBodySceneNode");
 	#endif
@@ -236,6 +238,9 @@ void CPhXRigidBodySceneNode::updateAbsolutePosition()
 {
 	IMeshSceneNode::updateAbsolutePosition();
 	AbsoluteTransformation.getInverse(absoluteTransformInv);
+	if (Parent) {
+		Parent->getAbsoluteTransformation().getInverse(parentTransformInv);
+	}
 }
 
 } // end namespace scene

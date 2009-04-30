@@ -78,12 +78,18 @@ namespace scene
 		virtual void setRotation(const core::vector3df& rotation) {
 			//ISceneNode::setRotation(rotation);
 			rotationQuaternion.set(rotation * core::DEGTORAD);
+			theBody->m_algularVel.makeIdentity();
 		}
+
+		CPhXRigidBody* getBody(){
+			return theBody;
+		}
+
 		//TODO: using quaternion for representing the rotation
 		core::quaternion rotationQuaternion;
 
 		core::matrix4 absoluteTransformInv;
-
+		core::matrix4 parentTransformInv;
 	private:
 		void setSize();
 

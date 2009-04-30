@@ -29,32 +29,36 @@ CPhXRigidBody::~CPhXRigidBody(void)
 void CPhXRigidBody::ApplyForce(const core::vector3df& force, const core::vector3df& pos)
 {
 	
-	core::vector3df localPos;// = pos / (m_length - m_width / 2);
-	core::vector3df localForce;
 	f32 flen = force.getLength();
 	if (flen > 0.000001f)
 	{
+		core::vector3df localPos;
+		core::vector3df localForce(force);
+
+		//transform the position to body coordinates
 		((CPhXRigidBodySceneNode*)sceneNode)->absoluteTransformInv.transformVect(localPos, pos);
-		((CPhXRigidBodySceneNode*)sceneNode)->absoluteTransformInv.transformVect(localForce, force);
-
-		localForce.setLength(flen);
-
+		
 		//scale the position vector so that it is with length 1 on most distant the edge of the box
 		localPos = localPos / (m_length - m_width / 2);
 
-		os::Printer::log(core::PhXFormattedString(">%f,%f,%f",
-			localPos.X,localPos.Y,localPos.Z).c_str());
-		os::Printer::log(core::PhXFormattedString(">>%f,%f,%f",
-			localForce.X,localForce.Y,localForce.Z).c_str());
+		//rotate teh force to body coordinates
+		core::quaternion rotInv = ((CPhXRigidBodySceneNode*)sceneNode)->rotationQuaternion;
+		rotInv.makeInverse();
+		localForce = rotInv * localForce;
+		//localForce.setLength(flen);
+
+		//os::Printer::log(core::PhXFormattedString(">%f,%f,%f",
+	//		localPos.X,localPos.Y,localPos.Z).c_str());
+	//	os::Printer::log(core::PhXFormattedString(">>%f,%f,%f",
+	//		localForce.X,localForce.Y,localForce.Z).c_str());
 
 		core::vector3df t = localForce.crossProduct(localPos);
 		
+		//rotate the torque back to parent's coordinte
+		t = ((CPhXRigidBodySceneNode*)sceneNode)->rotationQuaternion * t;
+
 		ApplyTorque(t);
-		//f32 fl = force.getLength();
-		//f32 tl = t.getLength();
-		//core::vector3df f = force;
-		//f.setLength(fl-tl);
-		//ApplyCentralForce(f);
+		ApplyCentralForce(force);
 	}
 }
 
@@ -66,7 +70,7 @@ void CPhXRigidBody::ApplyTorque(const core::vector3df& torque)
 	if (length != 0)
 	{
 		core::quaternion q;
-		q.fromAngleAxis(sqrt(length) * core::DEGTORAD, torque * core::reciprocal_squareroot(length));
+		q.fromAngleAxis(-sqrt(length) * core::DEGTORAD, torque * core::reciprocal_squareroot(length));
 		m_totalTorque = m_totalTorque * q;
 	}
 	//m_totalTorque += torque;
@@ -138,8 +142,6 @@ void CPhXRigidBody::CollideWithPoint(irr::phy::CPhXMassObject *other, const irr:
 	//TODO: precach the inversed matrix
 	//core::matrix4 invmat;
 	//mat.getInverse(invmat);
-
-
 
 	irr::core::vector3df ptLocalCoord;
 

@@ -25,7 +25,9 @@ CPhXSceneManager::CPhXSceneManager(video::IVideoDriver* driver, io::IFileSystem*
 : CSceneManager(driver, fs, cursorControl, cache, gui)
 {
 	MeshLoaderList.push_back(new CPhXFileLoader(this, FileSystem));
-	physicsNode = new CPhXSceneGlobalNode(this, this);
+	physicsNode = new CPhXSceneGlobalNode(this, this, 
+		core::aabbox3df(core::vector3df(-10000, -10000, -10000), 
+						core::vector3df(10000, 10000, 10000)));
 	physicsNode->drop();
 }
 

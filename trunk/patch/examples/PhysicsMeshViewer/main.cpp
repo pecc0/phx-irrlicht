@@ -36,6 +36,8 @@ scene::ISceneNode* Model = 0;
 scene::ISceneNode* SkyBox = 0;
 bool Octree=false;
 
+scene::IMeshSceneNode* dbg1 = 0;
+
 int cameraIndex = 0;
 scene::ICameraSceneNode* Camera[2] = { 0, 0};
 
@@ -193,9 +195,6 @@ void loadModel(const c8* fn)
 	Model->setDebugDataVisible(scene::EDS_OFF);
 
 
-	Device->getSceneManager()->addPhysicsRigidBody(100, 50, 0, Device->getSceneManager(), -1,
-		10, core::vector3df(0,0,0), core::vector3df(0,0,100));
-
 	// we need to uncheck the menu entries. would be cool to fake a menu event, but
 	// that's not so simple. so we do it brute force
 	gui::IGUIContextMenu* menu = (gui::IGUIContextMenu*)Device->getGUIEnvironment()->getRootGUIElement()->getElementFromId(GUI_ID_TOGGLE_DEBUG_INFO, true);
@@ -301,6 +300,25 @@ public:
 					IGUIElement* elem = Device->getGUIEnvironment()->getRootGUIElement()->getElementFromId(GUI_ID_POSITION_TEXT);
 					if (elem)
 						elem->setVisible(!elem->isVisible());
+				}
+			}
+			else if (event.KeyInput.Key == irr::KEY_F2)
+			{
+				if (Device)
+				{
+					//dbg1->setRotation(core::vector3df(0,90,0));
+					//dbg1->setPosition(core::vector3df(0,0,100));
+					if (dbg1)
+					{
+						if (dbg1->getReferenceCount() > 1)
+						{
+							dbg1->remove();
+						}
+						dbg1->drop();
+					}
+					dbg1 = Device->getSceneManager()->addPhysicsRigidBody(100, 50, 0, Device->getSceneManager(), -1,
+						10, core::vector3df(0,0,0), core::vector3df(0,0,100), core::vector3df(0,90,0));
+					dbg1->grab();
 				}
 			}
 		}
@@ -556,7 +574,7 @@ public:
 					core::vector3df target = (camera->getTarget() - camera->getAbsolutePosition());
 					target.setLength(1);
 					core::vector3df force = target;
-					force.setLength(0.1);
+					force.setLength(0.5);
 
 					scene::IBillboardSceneNode * cn;
 					cn = Device->getSceneManager()->addPhysicsAtom(0,
@@ -915,8 +933,12 @@ int main(int argc, char* argv[])
 		else
 			Device->yield();
 	}
-
+	if (dbg1)
+	{
+		dbg1->drop();
+	}
 	Device->drop();
+
 	return 0;
 }
 

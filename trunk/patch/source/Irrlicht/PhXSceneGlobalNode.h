@@ -18,6 +18,8 @@ public:
 	virtual void render(){};
 	virtual const core::aabbox3d<f32>& getBoundingBox() const;
 	virtual void OnAnimate(u32 timeMs);
+
+	
 protected:
 	core::aabbox3d<f32> boundings;
 };

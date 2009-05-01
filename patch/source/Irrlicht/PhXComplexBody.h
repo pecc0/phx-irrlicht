@@ -20,6 +20,9 @@ public:
         {};
         CPhXRigidBody* body;
         SPhXJoint* parent;
+        //precaching these as quaternions
+        core::quaternion initialRotationInv;
+        core::quaternion localRotation;
     };
 
 	CPhXComplexBody(ISceneManager *mgr);
@@ -39,6 +42,7 @@ protected:
 	}
     ISceneManager* sceneMgr;
     void createBoneSceneNode(SPhXJoint *joint);
+    void animateJoint(SPhXJoint *joint);
 public:
 	CPhXFileTree* fileTree;
 //	core::array<CPhXRigidBody*> rigidBodies;

@@ -312,9 +312,14 @@ CSceneManager::~CSceneManager()
 IAnimatedMesh* CSceneManager::getMesh(const c8* filename)
 {
 	IAnimatedMesh* msh = MeshCache->getMeshByFilename(filename);
-	if (msh)
-		return msh;
 
+	if (msh)
+	{
+	    //TODO: put rhis back
+		//return msh;
+		MeshCache->removeMesh(msh);
+
+	}
 	io::IReadFile* file = FileSystem->createAndOpenFile(filename);
 	if (!file)
 	{
@@ -644,7 +649,7 @@ ICameraSceneNode* CSceneManager::addCameraSceneNodeMaya(ISceneNode* parent,
 		parent = this;
 
 	ICameraSceneNode* node = new CCameraSceneNode(parent, this, id);
-	ISceneNodeAnimator* anm = new CSceneNodeAnimatorCameraMaya(CursorControl, 
+	ISceneNodeAnimator* anm = new CSceneNodeAnimatorCameraMaya(CursorControl,
 		rotateSpeed, zoomSpeed, translationSpeed);
 
 	node->addAnimator(anm);

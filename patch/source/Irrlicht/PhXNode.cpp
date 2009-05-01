@@ -14,7 +14,7 @@ CPhXNode::CPhXNode(void)
 	fieldsRead = 0;
 	written = false;
 	data = NULL;
-	
+
 }
 
 CPhXNode::~CPhXNode(void)
@@ -84,12 +84,12 @@ void irr::CPhXNode::getAllNodesOfType(PhXFormattedString templateName, list<list
 	{
 		if ((*i)->templ && (*i)->templ->name.equals_ignore_case(templateName))
 		{
-			
+
 			outList.push_back(i);
 		}
-		
+
 		(*i)->getAllNodesOfType(templateName, outList);
-			
+
 	}
 }
 
@@ -135,12 +135,12 @@ CPhXNode* irr::CPhXNode::createFieldFromType(CPhXTemplateField* type, scene::CXM
 
 CPhXNode* irr::CPhXNode::getFldByName(core::PhXFormattedString fldName)
 {
-	if (!templ) 
+	if (!templ)
 	{
 		return NULL;
 	}
 
-	
+
 	int indx = templ->getSubnodeIndex(fldName);
 	if (indx < 0)
 	{
@@ -167,7 +167,7 @@ int irr::CPhXNode::fromFile(scene::CXMeshFileLoader * l)
 	{
 		CPhXTemplateField* f = (CPhXTemplateField*)(*i);
 		CPhXNode* n = NULL;
-		
+
 		if (f->arraydimensions.getSize() > 0)
 		{
 			core::PhXFormattedString strdim1 = (*(f->arraydimensions.begin()))->getData();
@@ -199,22 +199,22 @@ int irr::CPhXNode::fromFile(scene::CXMeshFileLoader * l)
 		{
 			n = this->createFieldFromType(f, l);
 		}
-		
+
 		subNodes->push_back(n);
 		core::PhXFormattedString tok = l->getNextToken();
 		if (tok!=";")
 		{
 			os::Printer::log(
 				core::PhXFormattedString("Line %d: ';' expected while reading '%s' of type '%s')",
-				l->Line, 
-				name.c_str(), 
+				l->Line,
+				name.c_str(),
 				templ ? templ->name.c_str() : ""
 				).c_str());
 			return 0;
 		}
 		fieldsRead++;
 	}
-	
+
 	if (templ->isOpen)
 	{
 		core::PhXFormattedString tok = l->getNextToken();
@@ -258,7 +258,7 @@ int irr::CPhXNode::addNode(core::PhXFormattedString tok, scene::CXMeshFileLoader
 			if (!r || !r->templ)
 			{
 				os::Printer::log(
-					core::PhXFormattedString("line %d: no object named %s", 
+					core::PhXFormattedString("line %d: no object named %s",
 					l->Line, tok.c_str()).c_str());
 				return 0;
 			}
@@ -274,7 +274,7 @@ int irr::CPhXNode::addNode(core::PhXFormattedString tok, scene::CXMeshFileLoader
 					core::PhXFormattedString("(2)Line %d: } expected", l->Line).c_str());
 				return 0;
 			}
-			
+
 			return 1;
 		}
 		CPhXNode* t = root->getSubNode(tok);
@@ -320,17 +320,17 @@ int irr::CPhXNode::addNode(core::PhXFormattedString tok, scene::CXMeshFileLoader
 				).c_str());
 			}
 		}
-		
+
 	}
 	else
 	{
 		os::Printer::log(
-			core::PhXFormattedString("Line %d: node of template %s contains unallowed subnode of type %s", 
-			l->Line, 
+			core::PhXFormattedString("Line %d: node of template %s contains unallowed subnode of type %s",
+			l->Line,
 			templ ? "<root>" : templ->name.c_str(),
 			tok.c_str()
 			).c_str());
-		
+
 		return 0;
 	}
 
@@ -368,18 +368,18 @@ irr::core::PhXFormattedString CPhXNode::toString()
 	}
 
 	fieldsRead = 0;
-	bool opt = parent == root || 
+	bool opt = parent == root ||
 		(parent->templ ? parent->fieldsRead >= parent->templ->subNodes->getSize() : false);
-	
+
 	if (opt)
 	{
-		
+
 		ret+="\n";
 		ret += g_tabs.subString(0, g_ident);
 		ret+= core::PhXFormattedString("%s %s {\n", templ->name.c_str(), name.c_str());
 		g_ident++;
 		ret += g_tabs.subString(0, g_ident);
-		
+
 	}
 
 	irr::core::array<int>* nlp = new irr::core::array<int>(*(templ->nlPositions));
@@ -490,7 +490,7 @@ int irr::CPhXArray::fromFile(scene::CXMeshFileLoader * l)
 					core::PhXFormattedString(
 						"Line %d: ',' expected (reading '%s' of type '%s')",
 						l->Line,
-						parent->name.c_str(), 
+						parent->name.c_str(),
 						parent->templ ? parent->templ->name.c_str() : ""
 					).c_str());
 				return 0;

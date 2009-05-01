@@ -6,7 +6,7 @@ scene management of Irrlicht. The tutorial show how to create and use Buttons,
 Windows, Toolbars, Menus, ComboBoxes, Tabcontrols, Editboxes, Images,
 MessageBoxes, SkyBoxes, and how to parse XML files with the integrated XML
 reader of the engine.
- 
+
 We start like in most other tutorials: Include all nesessary header files, add
 a comment to let the engine be linked with the right .lib file in Visual
 Studio, and declare some global variables. We also add two 'using namespace'
@@ -119,11 +119,12 @@ void showAboutText()
 	addAnimatedMeshSceneNode and the scene manager. Nothing difficult. It also
 	displays a short message box, if the model could not be loaded.
 */
+core::stringc filename;
 void loadModel(const c8* fn)
 {
 	// modify the name if it a .pk3 file
 
-	core::stringc filename ( fn );
+	filename = ( fn );
 
 	core::stringc extension;
 	core::getFileNameExtension ( extension, filename );
@@ -308,6 +309,7 @@ public:
 				{
 					//dbg1->setRotation(core::vector3df(0,90,0));
 					//dbg1->setPosition(core::vector3df(0,0,100));
+					/*
 					if (dbg1)
 					{
 						if (dbg1->getReferenceCount() > 1)
@@ -319,6 +321,8 @@ public:
 					dbg1 = Device->getSceneManager()->addPhysicsRigidBody(100, 50, 0, Device->getSceneManager(), -1,
 						10, core::vector3df(0,0,0), core::vector3df(0,0,100), core::vector3df(0,90,0));
 					dbg1->grab();
+					*/
+					loadModel(filename.c_str());
 				}
 			}
 		}
@@ -877,7 +881,7 @@ int main(int argc, char* argv[])
 		{EKA_FLY_UP, KEY_SPACE},
 		{EKA_FLY_DOWN, KEY_LSHIFT},
 		{EKA_FLY_DOWN, KEY_SHIFT},
-	}; 
+	};
 	( (scene::ISceneNodeAnimatorCameraFPS*) (*(Camera[1]->getAnimators().begin())) )->
 		setKeyMap(keyMap, 7);
 

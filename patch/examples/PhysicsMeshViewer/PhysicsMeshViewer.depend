@@ -1,0 +1,893 @@
+# depslib dependency file v1.0
+1241126080 source:/danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/examples/PhysicsMeshViewer/main.cpp
+	<irrlicht.h>
+	<iostream>
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrlicht.h
+	"IrrCompileConfig.h"
+	"aabbox3d.h"
+	"CDynamicMeshBuffer.h"
+	"CIndexBuffer.h"
+	"CMeshBuffer.h"
+	"coreutil.h"
+	"CVertexBuffer.h"
+	"dimension2d.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"EDriverFeatures.h"
+	"EDriverTypes.h"
+	"EGUIAlignment.h"
+	"EGUIElementTypes.h"
+	"EHardwareBufferFlags.h"
+	"EMaterialFlags.h"
+	"EMaterialTypes.h"
+	"EMeshWriterEnums.h"
+	"EMessageBoxFlags.h"
+	"ESceneNodeAnimatorTypes.h"
+	"ESceneNodeTypes.h"
+	"ETerrainElements.h"
+	"fast_atof.h"
+	"heapsort.h"
+	"IAnimatedMesh.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+	"IAnimatedMeshSceneNode.h"
+	"IAttributeExchangingObject.h"
+	"IAttributes.h"
+	"IBillboardSceneNode.h"
+	"IBillboardTextSceneNode.h"
+	"IBoneSceneNode.h"
+	"ICameraSceneNode.h"
+	"ICursorControl.h"
+	"IDummyTransformationSceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"IEventReceiver.h"
+	"IFileList.h"
+	"IFileSystem.h"
+	"IGPUProgrammingServices.h"
+	"IGUIButton.h"
+	"IGUICheckBox.h"
+	"IGUIColorSelectDialog.h"
+	"IGUIComboBox.h"
+	"IGUIContextMenu.h"
+	"IGUIEditBox.h"
+	"IGUIElement.h"
+	"IGUIElementFactory.h"
+	"IGUIEnvironment.h"
+	"IGUIFileOpenDialog.h"
+	"IGUIFont.h"
+	"IGUIFontBitmap.h"
+	"IGUIImage.h"
+	"IGUIInOutFader.h"
+	"IGUIListBox.h"
+	"IGUIMeshViewer.h"
+	"IGUIScrollBar.h"
+	"IGUISkin.h"
+	"IGUISpinBox.h"
+	"IGUISpriteBank.h"
+	"IGUIStaticText.h"
+	"IGUITabControl.h"
+	"IGUITable.h"
+	"IGUIToolbar.h"
+	"IGUIWindow.h"
+	"IImage.h"
+	"IImageLoader.h"
+	"IImageWriter.h"
+	"IIndexBuffer.h"
+	"ILightSceneNode.h"
+	"ILogger.h"
+	"IMaterialRenderer.h"
+	"IMaterialRendererServices.h"
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"IMeshCache.h"
+	"IMeshLoader.h"
+	"IMeshManipulator.h"
+	"IMeshSceneNode.h"
+	"IMeshWriter.h"
+	"IMetaTriangleSelector.h"
+	"IOSOperator.h"
+	"IParticleSystemSceneNode.h"
+	"IQ3LevelMesh.h"
+	"IQ3Shader.h"
+	"IReadFile.h"
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"IrrlichtDevice.h"
+	"irrList.h"
+	"irrMap.h"
+	"irrMath.h"
+	"irrString.h"
+	"irrTypes.h"
+	"irrXML.h"
+	"ISceneCollisionManager.h"
+	"ISceneManager.h"
+	"ISceneNode.h"
+	"ISceneNodeAnimator.h"
+	"ISceneNodeAnimatorCameraFPS.h"
+	"ISceneNodeAnimatorCameraMaya.h"
+	"ISceneNodeAnimatorCollisionResponse.h"
+	"ISceneNodeAnimatorFactory.h"
+	"ISceneNodeFactory.h"
+	"ISceneUserDataSerializer.h"
+	"IShaderConstantSetCallBack.h"
+	"IShadowVolumeSceneNode.h"
+	"ISkinnedMesh.h"
+	"ITerrainSceneNode.h"
+	"ITextSceneNode.h"
+	"ITexture.h"
+	"ITimer.h"
+	"ITriangleSelector.h"
+	"IVertexBuffer.h"
+	"IVideoDriver.h"
+	"IVideoModeList.h"
+	"IVolumeLightSceneNode.h"
+	"IWriteFile.h"
+	"IXMLReader.h"
+	"IXMLWriter.h"
+	"Keycodes.h"
+	"line2d.h"
+	"line3d.h"
+	"matrix4.h"
+	"plane3d.h"
+	"position2d.h"
+	"quaternion.h"
+	"rect.h"
+	"S3DVertex.h"
+	"SAnimatedMesh.h"
+	"SceneParameters.h"
+	"SColor.h"
+	"SExposedVideoData.h"
+	"SIrrCreationParameters.h"
+	"SKeyMap.h"
+	"SLight.h"
+	"SMaterial.h"
+	"SMesh.h"
+	"SMeshBuffer.h"
+	"SMeshBufferLightMap.h"
+	"SMeshBufferTangents.h"
+	"SParticle.h"
+	"SSharedMeshBuffer.h"
+	"SSkinMeshBuffer.h"
+	"SVertexIndex.h"
+	"SViewFrustum.h"
+	"triangle3d.h"
+	"vector2d.h"
+	"vector3d.h"
+	"SIrrCreationParameters.h"
+
+1240943364 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IrrCompileConfig.h
+	<stdio.h>
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/aabbox3d.h
+	"irrMath.h"
+	"plane3d.h"
+	"line3d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrMath.h
+	"IrrCompileConfig.h"
+	"irrTypes.h"
+	<math.h>
+	<stdlib.h>
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrTypes.h
+	"IrrCompileConfig.h"
+	<wchar.h>
+	<crtdbg.h>
+	"assert.h"
+	<stdlib.h>
+	<crtdbg.h>
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/plane3d.h
+	"irrMath.h"
+	"vector3d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/vector3d.h
+	"irrMath.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/line3d.h
+	"irrTypes.h"
+	"vector3d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/CDynamicMeshBuffer.h
+	"IDynamicMeshBuffer.h"
+	"CVertexBuffer.h"
+	"CIndexBuffer.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IDynamicMeshBuffer.h
+	"IMeshBuffer.h"
+	"IVertexBuffer.h"
+	"IIndexBuffer.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMeshBuffer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"aabbox3d.h"
+	"S3DVertex.h"
+	"SVertexIndex.h"
+	"EHardwareBufferFlags.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IReferenceCounted.h
+	"irrTypes.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SMaterial.h
+	"SColor.h"
+	"matrix4.h"
+	"irrArray.h"
+	"EMaterialTypes.h"
+	"EMaterialFlags.h"
+	"SMaterialLayer.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SColor.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/matrix4.h
+	"irrTypes.h"
+	"vector3d.h"
+	"vector2d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+	"rect.h"
+	"irrString.h"
+
+1240518992 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/vector2d.h
+	"irrMath.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/rect.h
+	"irrTypes.h"
+	"dimension2d.h"
+	"position2d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/dimension2d.h
+	"irrTypes.h"
+	"irrMath.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/position2d.h
+	"irrTypes.h"
+	"dimension2d.h"
+
+1241105768 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrString.h
+	"irrTypes.h"
+	"irrAllocator.h"
+	"irrMath.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrAllocator.h
+	"irrTypes.h"
+	<new>
+	<memory.h>
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrArray.h
+	"irrTypes.h"
+	"heapsort.h"
+	"irrAllocator.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/heapsort.h
+	"irrTypes.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EMaterialTypes.h
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EMaterialFlags.h
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SMaterialLayer.h
+	"matrix4.h"
+	"irrAllocator.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/S3DVertex.h
+	"vector3d.h"
+	"vector2d.h"
+	"SColor.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SVertexIndex.h
+	"irrTypes.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EHardwareBufferFlags.h
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IVertexBuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"S3DVertex.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IIndexBuffer.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SVertexIndex.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/CVertexBuffer.h
+	"IVertexBuffer.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/CIndexBuffer.h
+	"IIndexBuffer.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/CMeshBuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/coreutil.h
+	"irrString.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ECullingTypes.h
+	"irrTypes.h"
+
+1241105768 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EDebugSceneTypes.h
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EDriverFeatures.h
+
+1240943364 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EDriverTypes.h
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EGUIAlignment.h
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EGUIElementTypes.h
+	"irrTypes.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EMeshWriterEnums.h
+	"irrTypes.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/EMessageBoxFlags.h
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ESceneNodeAnimatorTypes.h
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ESceneNodeTypes.h
+	"irrTypes.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ETerrainElements.h
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/fast_atof.h
+	<stdlib.h>
+	"irrMath.h"
+	<float.h>
+	<limits.h>
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IAnimatedMesh.h
+	"aabbox3d.h"
+	"IMesh.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMesh.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"EHardwareBufferFlags.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IAnimatedMeshMD2.h
+	"IAnimatedMesh.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IAnimatedMeshMD3.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+	"quaternion.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IQ3Shader.h
+	"irrArray.h"
+	"fast_atof.h"
+	"IFileSystem.h"
+	"IVideoDriver.h"
+	"coreutil.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IFileSystem.h
+	"IReferenceCounted.h"
+	"IXMLReader.h"
+	"irrString.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IXMLReader.h
+	"IReferenceCounted.h"
+	"irrXML.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrXML.h
+	<stdio.h>
+	"IrrCompileConfig.h"
+	<irrXML.h>
+	<string>
+	<irrXML.h>
+	<irrXML.h>
+	<irrXML.h>
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IVideoDriver.h
+	"rect.h"
+	"SColor.h"
+	"ITexture.h"
+	"irrArray.h"
+	"matrix4.h"
+	"plane3d.h"
+	"dimension2d.h"
+	"position2d.h"
+	"SMaterial.h"
+	"IMeshBuffer.h"
+	"triangle3d.h"
+	"EDriverTypes.h"
+	"EDriverFeatures.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ITexture.h
+	"IReferenceCounted.h"
+	"IImage.h"
+	"dimension2d.h"
+	"EDriverTypes.h"
+	"irrString.h"
+	"matrix4.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IImage.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+	"SColor.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/triangle3d.h
+	"vector3d.h"
+	"line3d.h"
+	"plane3d.h"
+	"aabbox3d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/quaternion.h
+	"irrTypes.h"
+	"irrMath.h"
+	"matrix4.h"
+	"vector3d.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IAnimatedMeshSceneNode.h
+	"ISceneNode.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMeshMD2.h"
+	"IAnimatedMeshMD3.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNode.h
+	"IAttributeExchangingObject.h"
+	"ESceneNodeTypes.h"
+	"ECullingTypes.h"
+	"EDebugSceneTypes.h"
+	"ISceneNodeAnimator.h"
+	"ITriangleSelector.h"
+	"SMaterial.h"
+	"irrString.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"irrList.h"
+	"IAttributes.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IAttributeExchangingObject.h
+	"IReferenceCounted.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNodeAnimator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"ESceneNodeAnimatorTypes.h"
+	"IAttributeExchangingObject.h"
+	"IEventReceiver.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IEventReceiver.h
+	"ILogger.h"
+	"position2d.h"
+	"Keycodes.h"
+	"irrString.h"
+
+1240518992 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ILogger.h
+	"IReferenceCounted.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/Keycodes.h
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ITriangleSelector.h
+	"IReferenceCounted.h"
+	"triangle3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"line3d.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrList.h
+	"irrTypes.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IAttributes.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"vector3d.h"
+	"vector2d.h"
+	"line2d.h"
+	"line3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"rect.h"
+	"matrix4.h"
+	"quaternion.h"
+	"plane3d.h"
+	"triangle3d.h"
+	"line2d.h"
+	"line3d.h"
+	"irrString.h"
+	"irrArray.h"
+	"IXMLReader.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/line2d.h
+	"irrTypes.h"
+	"vector2d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IBoneSceneNode.h
+	"ISceneNode.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IBillboardSceneNode.h
+	"ISceneNode.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IBillboardTextSceneNode.h
+	"IBillboardSceneNode.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ICameraSceneNode.h
+	"ISceneNode.h"
+	"IEventReceiver.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ICursorControl.h
+	"IReferenceCounted.h"
+	"position2d.h"
+	"rect.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IDummyTransformationSceneNode.h
+	"ISceneNode.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IFileList.h
+	"IReferenceCounted.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGPUProgrammingServices.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIButton.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIElement.h
+	"IAttributeExchangingObject.h"
+	"irrList.h"
+	"rect.h"
+	"irrString.h"
+	"IEventReceiver.h"
+	"EGUIElementTypes.h"
+	"EGUIAlignment.h"
+	"IAttributes.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUICheckBox.h
+	"IGUIElement.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIColorSelectDialog.h
+	"IGUIElement.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIComboBox.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIContextMenu.h
+	"IGUIElement.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIEditBox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIElementFactory.h
+	"IReferenceCounted.h"
+	"EGUIElementTypes.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIEnvironment.h
+	"IReferenceCounted.h"
+	"IGUISkin.h"
+	"rect.h"
+	"EMessageBoxFlags.h"
+	"IEventReceiver.h"
+	"IXMLReader.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUISkin.h
+	"IAttributeExchangingObject.h"
+	"EGUIAlignment.h"
+	"SColor.h"
+	"rect.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIFileOpenDialog.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIFont.h
+	"IReferenceCounted.h"
+	"SColor.h"
+	"rect.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIFontBitmap.h
+	"IGUIFont.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIImage.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIInOutFader.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIListBox.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIMeshViewer.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIScrollBar.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUISpinBox.h
+	"IGUIElement.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUISpriteBank.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"SColor.h"
+	"rect.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIStaticText.h
+	"IGUIElement.h"
+	"SColor.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUITabControl.h
+	"IGUIElement.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUITable.h
+	"IGUIElement.h"
+	"irrTypes.h"
+	"SColor.h"
+	"IGUISkin.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIToolbar.h
+	"IGUIElement.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IGUIWindow.h
+	"IGUIElement.h"
+	"EMessageBoxFlags.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IImageLoader.h
+	"IReferenceCounted.h"
+	"IImage.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IImageWriter.h
+	"IReferenceCounted.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ILightSceneNode.h
+	"ISceneNode.h"
+	"SLight.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SLight.h
+	"SColor.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMaterialRenderer.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMaterialRendererServices.h
+	"IReferenceCounted.h"
+	"SMaterial.h"
+	"S3DVertex.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMeshCache.h
+	"IReferenceCounted.h"
+	"irrString.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMeshLoader.h
+	"IReferenceCounted.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMeshManipulator.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IAnimatedMesh.h"
+	"SColor.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMeshSceneNode.h
+	"ISceneNode.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMeshWriter.h
+	"IReferenceCounted.h"
+	"EMeshWriterEnums.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IMetaTriangleSelector.h
+	"ITriangleSelector.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IOSOperator.h
+	"IReferenceCounted.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleSystemSceneNode.h
+	"ISceneNode.h"
+	"IParticleAnimatedMeshSceneNodeEmitter.h"
+	"IParticleBoxEmitter.h"
+	"IParticleCylinderEmitter.h"
+	"IParticleMeshEmitter.h"
+	"IParticleRingEmitter.h"
+	"IParticleSphereEmitter.h"
+	"IParticleAttractionAffector.h"
+	"IParticleFadeOutAffector.h"
+	"IParticleGravityAffector.h"
+	"IParticleRotationAffector.h"
+	"dimension2d.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleAnimatedMeshSceneNodeEmitter.h
+	"IParticleEmitter.h"
+	"IAnimatedMeshSceneNode.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleEmitter.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SParticle.h
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleBoxEmitter.h
+	"IParticleEmitter.h"
+	"aabbox3d.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleCylinderEmitter.h
+	"IParticleEmitter.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleMeshEmitter.h
+	"IParticleEmitter.h"
+	"IMesh.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleRingEmitter.h
+	"IParticleEmitter.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleSphereEmitter.h
+	"IParticleEmitter.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleAttractionAffector.h
+	"IParticleAffector.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleAffector.h
+	"IAttributeExchangingObject.h"
+	"SParticle.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleFadeOutAffector.h
+	"IParticleAffector.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleGravityAffector.h
+	"IParticleAffector.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IParticleRotationAffector.h
+	"IParticleAffector.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IQ3LevelMesh.h
+	"IAnimatedMesh.h"
+	"IQ3Shader.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IReadFile.h
+	"IReferenceCounted.h"
+
+1240943364 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IrrlichtDevice.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+	"IVideoDriver.h"
+	"EDriverTypes.h"
+	"IEventReceiver.h"
+	"ICursorControl.h"
+	"IVideoModeList.h"
+	"ITimer.h"
+	"IOSOperator.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IVideoModeList.h
+	"IReferenceCounted.h"
+	"dimension2d.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ITimer.h
+	"IReferenceCounted.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/irrMap.h
+	"irrTypes.h"
+
+1240943364 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneCollisionManager.h
+	"IReferenceCounted.h"
+	"vector3d.h"
+	"triangle3d.h"
+	"position2d.h"
+	"line3d.h"
+
+1241105768 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneManager.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"vector3d.h"
+	"dimension2d.h"
+	"SColor.h"
+	"ETerrainElements.h"
+	"ESceneNodeTypes.h"
+	"EMeshWriterEnums.h"
+	"SceneParameters.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SceneParameters.h
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNodeAnimatorCameraFPS.h
+	"ISceneNodeAnimator.h"
+	"IEventReceiver.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNodeAnimatorCameraMaya.h
+	"ISceneNodeAnimator.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNodeAnimatorCollisionResponse.h
+	"ISceneNode.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNodeAnimatorFactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeAnimatorTypes.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneNodeFactory.h
+	"IReferenceCounted.h"
+	"ESceneNodeTypes.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneUserDataSerializer.h
+	"IReferenceCounted.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IShaderConstantSetCallBack.h
+	"IReferenceCounted.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IShadowVolumeSceneNode.h
+	"ISceneNode.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISkinnedMesh.h
+	"irrArray.h"
+	"IBoneSceneNode.h"
+	"IAnimatedMesh.h"
+	"SSkinMeshBuffer.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SSkinMeshBuffer.h
+	"IMeshBuffer.h"
+	"S3DVertex.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ITerrainSceneNode.h
+	"ETerrainElements.h"
+	"ISceneNode.h"
+	"IDynamicMeshBuffer.h"
+	"irrArray.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ITextSceneNode.h
+	"ISceneNode.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IVolumeLightSceneNode.h
+	"ISceneNode.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IWriteFile.h
+	"IReferenceCounted.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/IXMLWriter.h
+	"IReferenceCounted.h"
+	"irrArray.h"
+	"irrString.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SAnimatedMesh.h
+	"IAnimatedMesh.h"
+	"IMesh.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SExposedVideoData.h
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SIrrCreationParameters.h
+	"EDriverTypes.h"
+	"dimension2d.h"
+
+1241105768 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SKeyMap.h
+	"Keycodes.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SMesh.h
+	"IMesh.h"
+	"IMeshBuffer.h"
+	"aabbox3d.h"
+	"irrArray.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SMeshBuffer.h
+	"CMeshBuffer.h"
+
+1240518990 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SMeshBufferLightMap.h
+	"CMeshBuffer.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SMeshBufferTangents.h
+	"CMeshBuffer.h"
+
+1240518991 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SSharedMeshBuffer.h
+	"irrArray.h"
+	"IMeshBuffer.h"
+
+1240518989 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/SViewFrustum.h
+	"plane3d.h"
+	"vector3d.h"
+	"aabbox3d.h"
+	"matrix4.h"
+	"IVideoDriver.h"
+

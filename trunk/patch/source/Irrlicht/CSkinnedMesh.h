@@ -152,13 +152,13 @@ protected:
 			return new SJoint;
 		}
 
+        void buildAll_LocalAnimatedMatrices(); //public?
+
 private:
 
 		void checkForAnimation();
 
 		void normalizeWeights();
-
-		void buildAll_LocalAnimatedMatrices(); //public?
 
 		void buildAll_GlobalAnimatedMatrices(SJoint *Joint=0, SJoint *ParentJoint=0);
 

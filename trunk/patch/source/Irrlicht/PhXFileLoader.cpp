@@ -9,7 +9,7 @@ namespace irr
 {
 namespace scene
 {
-char* defaultTemplates = 
+char* defaultTemplates =
 "xof 0303txt 0032\n\
 template Matrix4x4 {\n\
 	<f6f23f45-7686-11cf-8f52-0040333594a3>\n\
@@ -210,7 +210,7 @@ NewlineFormat {\n\
 
 CPhXFileLoader::CPhXFileLoader(scene::ISceneManager* smgr, io::IFileSystem* fs) : CXMeshFileLoader(smgr, fs)
 {
-	
+
 }
 //! returns true if the file maybe is able to be loaded by this class
 //! based on the file extension (e.g. ".bsp")
@@ -252,7 +252,7 @@ bool CPhXFileLoader::parseFile()
 	tree->floatSize = FloatSize;
 
 	tree->fromFile(defTemplatesLoader);
-	
+
 	file->drop();
 	delete[] defTemplatesLoader->Buffer;
 	defTemplatesLoader->drop();
@@ -261,11 +261,11 @@ bool CPhXFileLoader::parseFile()
 
 	io::IWriteFile* fout = FileSystem->createAndWriteFile("out.phx");
 	core::PhXFormattedString str = tree->toString();
-	fout->write(str.c_str(), str.size()); 
+	fout->write(str.c_str(), str.size());
 
 	fout->drop();
 	//tree->drop();
-	
+
 	P = bkp;
 	bool ret = CXMeshFileLoader::parseFile();
 	if (ret)
@@ -281,7 +281,7 @@ bool CPhXFileLoader::parseFile()
 
 CSkinnedMesh* CPhXFileLoader::getNewMesh(void)
 {
-	return new irr::phy::CPhXComplexBody();
+	return new irr::phy::CPhXComplexBody(SceneManager);
 }
 
 }

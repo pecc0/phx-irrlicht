@@ -19,7 +19,8 @@ public:
 			video::SColor colorTop = 0xFFFFFFFF, video::SColor colorBottom = 0xFFFFFFFF,
 			f32 mass=1., const core::vector3df& initForce = core::vector3df(0,0,0));
 
-	virtual IMeshSceneNode* addPhysicsRigidBody(f32 length, f32 width,
+	virtual IMeshSceneNode* addPhysicsRigidBody(core::aabbox3df* colbox,
+            f32 length, f32 width,
             ISceneNode* parent,
 			ISceneManager* mgr, s32 id,
 			f32 mass=1., const core::vector3df& initForce = core::vector3df(0,0,0),

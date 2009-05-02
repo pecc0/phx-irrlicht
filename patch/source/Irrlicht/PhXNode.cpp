@@ -2,7 +2,7 @@
 #include "PhXFileTree.h"
 #include "PhXFormattedString.h"
 #include "os.h"
-
+#include "PhXTemplateField.h"
 namespace irr
 {
 
@@ -55,7 +55,7 @@ int irr::CPhXNode::getSubnodeIndex(core::PhXFormattedString name)
 	int result = 0;
 	for (irr::core::list<CPhXNode*>::Iterator i = subNodes->begin(); i != subNodes->end(); ++i)
 	{
-		if ((*i)->name == name)
+		if ((*i)->name.equals_ignore_case(name))
 		{
 			return result;
 		}
@@ -132,6 +132,7 @@ CPhXNode* irr::CPhXNode::createFieldFromType(CPhXTemplateField* type, scene::CXM
 	}
 	return n;
 }
+
 
 CPhXNode* irr::CPhXNode::getFldByName(core::PhXFormattedString fldName)
 {
@@ -431,6 +432,24 @@ irr::core::PhXFormattedString CPhXNode::toString()
 	}
 	return ret;
 }
+
+/** @brief getVector
+  *
+  * @todo: document this function
+  */
+core::vector3df CPhXNode::getVector()
+{
+    core::vector3df out;
+    if (templ->name.equals_ignore_case("Vector"))
+    {
+        out.X = ((CPhXFloat *)(getFldByName("X")->data))->data;
+        out.Y = ((CPhXFloat *)(getFldByName("Y")->data))->data;
+        out.Z = ((CPhXFloat *)(getFldByName("Z")->data))->data;
+    }
+    return out;
+}
+
+
 
 irr::core::PhXFormattedString CPhXArray::toString()
 {

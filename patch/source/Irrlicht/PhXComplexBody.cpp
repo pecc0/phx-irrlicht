@@ -41,7 +41,23 @@ void CPhXComplexBody::createBoneSceneNode(SPhXJoint *joint)
     joint->localRotation = joint->LocalMatrix;
 
     //joint->Animatedrotation.toEuler(rotation);
+
+    CPhXNode* jointNode = fileTree->getSubNode(joint->Name);
+    list<list<CPhXNode*>::Iterator> boxNodes;
+    jointNode->getAllNodesOfType("Box", boxNodes);
+    core::aabbox3df box;
+    core::aabbox3df* pbox = 0;
+    if (boxNodes.getSize() > 0)
+    {
+        CPhXNode* boxNode = (*(*boxNodes.getLast()));
+
+        box.MinEdge = boxNode->getFldByName("min")->getVector();
+        box.MaxEdge = boxNode->getFldByName("max")->getVector();
+        pbox = &box;
+    }
+
     CPhXRigidBodySceneNode* n = (CPhXRigidBodySceneNode*)sceneMgr->addPhysicsRigidBody(
+        pbox,
         30, 15, 0,
         sceneMgr, -1,
         10, core::vector3df(0,0,0),
@@ -93,7 +109,7 @@ void CPhXComplexBody::animateJoint(SPhXJoint *joint)
     if (joint->parent)
     {
         joint->parent->GlobalAnimatedMatrix.getInverse(inv);
-        //inv = joint->parent->GlobalInversedMatrix;
+        //inv = joiřnt->parent->GlobalInversedMatrix;
     }
     core::vector3df pos = snode->getPosition();
     //pos += joint->LocalMatrix.getTranslation();

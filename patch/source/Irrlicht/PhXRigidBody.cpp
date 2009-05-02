@@ -16,10 +16,41 @@ CPhXJoint::~CPhXJoint()
 	}
 }
 */
-CPhXRigidBody::CPhXRigidBody(f32 mass, f32 length, f32 width):
-	m_length(length), m_width(width)
+
+/** @brief CPhXRigidBody
+  *
+  * Create a rigid body
+  */
+ CPhXRigidBody::CPhXRigidBody(f32 mass, const core::aabbox3df & colbox)
+{
+    SetMass(mass);
+    collisionBox = colbox;
+}
+
+
+/** @brief CPhXRigidBody
+  *
+  * convenient when creating a bone
+  */
+CPhXRigidBody::CPhXRigidBody(f32 mass, f32 length, f32 width)
+	//:m_length(length), m_width(width)
 {
 	SetMass(mass);
+
+	f32 len = length / width;
+
+	core::vector3df* pmi = &(collisionBox.MinEdge);
+	core::vector3df* pma = &(collisionBox.MaxEdge);
+
+	pmi->set(0,0,0);
+	pma->set(len,1,1);
+
+	*pmi -= core::vector3df(0.5f, 0.5f, 0.5f);
+	*pma -= core::vector3df(0.5f, 0.5f, 0.5f);
+
+	*pmi *= width;
+	*pma *= width;
+
 }
 
 CPhXRigidBody::~CPhXRigidBody(void)
@@ -28,7 +59,7 @@ CPhXRigidBody::~CPhXRigidBody(void)
 
 void CPhXRigidBody::ApplyForce(const core::vector3df& force, const core::vector3df& pos)
 {
-	
+
 	f32 flen = force.getLength();
 	if (flen > 0.000001f)
 	{
@@ -37,9 +68,12 @@ void CPhXRigidBody::ApplyForce(const core::vector3df& force, const core::vector3
 
 		//transform the position to body coordinates
 		((CPhXRigidBodySceneNode*)sceneNode)->absoluteTransformInv.transformVect(localPos, pos);
-		
+
 		//scale the position vector so that it is with length 1 on most distant the edge of the box
-		localPos = localPos / (m_length - m_width / 2);
+		f32 mostDistPt = core::reciprocal_squareroot(
+            core::max_(collisionBox.MinEdge.getLengthSQ(),collisionBox.MaxEdge.getLengthSQ()));
+
+		localPos = localPos * (mostDistPt);
 
 		//rotate teh force to body coordinates
 		core::quaternion rotInv = ((CPhXRigidBodySceneNode*)sceneNode)->rotationQuaternion;
@@ -53,7 +87,7 @@ void CPhXRigidBody::ApplyForce(const core::vector3df& force, const core::vector3
 	//		localForce.X,localForce.Y,localForce.Z).c_str());
 
 		core::vector3df t = localForce.crossProduct(localPos);
-		
+
 		//rotate the torque back to parent's coordinte
 		t = ((CPhXRigidBodySceneNode*)sceneNode)->rotationQuaternion * t;
 
@@ -92,7 +126,7 @@ void CPhXRigidBody::UpdatePosition(f32 step)
 	CPhXMassObject::UpdatePosition(step);
 	/*
 	//UpdateVelocity(step);
-	
+
 	(*inOutRotation) *= core::DEGTORAD;
 	irr::core::quaternion rotation(*inOutRotation);
 	irr::core::quaternion avel;
@@ -155,7 +189,7 @@ void CPhXRigidBody::CollideWithPoint(irr::phy::CPhXMassObject *other, const irr:
 		//os::Printer::log(core::PhXFormattedString("inside: (%f,%f,%f)\n",
 		//	pt.X,pt.Y,pt.Z).c_str());
 		core::vector3df force(other->getLinearVelocity());
-		
+
 		force *= other->getMass();
 		ApplyForce(force, pt);
 		force *= -1;

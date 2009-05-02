@@ -8,6 +8,7 @@
 #include "IReferenceCounted.h"
 #include "irrArray.h"
 #include "vector3d.h"
+#include "aabbox3d.h"
 #include "dimension2d.h"
 #include "SColor.h"
 #include "ETerrainElements.h"
@@ -512,9 +513,9 @@ namespace scene
 		/** This camera does not react on user input like for example the one created with
 		addCameraSceneNodeFPS(). If you want to move or animate it, use animators or the
 		ISceneNode::setPosition(), ICameraSceneNode::setTarget() etc methods.
-		By default, a camera's look at position (set with setTarget()) and its scene node 
-		rotation (set with setRotation()) are independent.  If you want to be able to 
-		control the direction that the camera looks by using setRotation() then call 
+		By default, a camera's look at position (set with setTarget()) and its scene node
+		rotation (set with setRotation()) are independent.  If you want to be able to
+		control the direction that the camera looks by using setRotation() then call
 		ICameraSceneNode::bindTargetAndRotation(true) on it.
 		 \param position: Position of the space relative to its parent where the camera will be placed.
 		 \param lookat: Position where the camera will look at. Also known as target.
@@ -1104,8 +1105,8 @@ namespace scene
 		 const core::aabbox3d<f32>& box = yourSceneNode->getBoundingBox();
 		 core::vector3df radius = box.MaxEdge - box.getCenter();
 		 \endcode
-		 \param gravityPerSecond: Sets the gravity of the environment, as an acceleration in 
-		 units per second per second. If your units are equivalent to metres, then 
+		 \param gravityPerSecond: Sets the gravity of the environment, as an acceleration in
+		 units per second per second. If your units are equivalent to metres, then
 		 core::vector3df(0,-10.0f,0) would give an approximately realistic gravity.
 		 You can disable gravity by setting it to core::vector3df(0,0,0).
 		 \param ellipsoidTranslation: By default, the ellipsoid for collision detection is created around
@@ -1406,7 +1407,10 @@ namespace scene
 		{
 			return NULL;
 		}
-		virtual IMeshSceneNode* addPhysicsRigidBody(f32 length, f32 width, ISceneNode* parent, 
+
+		virtual IMeshSceneNode* addPhysicsRigidBody(core::aabbox3df* colbox,
+            f32 length, f32 width,
+            ISceneNode* parent,
 			ISceneManager* mgr, s32 id,
 			f32 mass=1., const core::vector3df& initForce = core::vector3df(0,0,0),
 			const core::vector3df& position = core::vector3df(0,0,0),

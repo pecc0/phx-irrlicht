@@ -25,8 +25,8 @@ CPhXSceneManager::CPhXSceneManager(video::IVideoDriver* driver, io::IFileSystem*
 : CSceneManager(driver, fs, cursorControl, cache, gui)
 {
 	MeshLoaderList.push_back(new CPhXFileLoader(this, FileSystem));
-	physicsNode = new CPhXSceneGlobalNode(this, this, 
-		core::aabbox3df(core::vector3df(-10000, -10000, -10000), 
+	physicsNode = new CPhXSceneGlobalNode(this, this,
+		core::aabbox3df(core::vector3df(-10000, -10000, -10000),
 						core::vector3df(10000, 10000, 10000)));
 	physicsNode->drop();
 }
@@ -47,7 +47,7 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	IBillboardSceneNode* node = new CBillboardSceneNode(parent, this, id, position, size,
 		colorTop, colorBottom);
 	node->drop();
-	
+
 	CPhXAtom* atom = new CPhXAtom(mass);
 	atom->ApplyCentralForce(initForce);
 	CPhXSceneNodeAnimator* phxa = new CPhXSceneNodeAnimator(atom, this);
@@ -61,7 +61,9 @@ IBillboardSceneNode* CPhXSceneManager::addPhysicsAtom(ISceneNode* parent,
 	return node;
 }
 
-IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 length, f32 width, ISceneNode* parent, 
+IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(core::aabbox3df* colbox,
+    f32 length, f32 width,
+    ISceneNode* parent,
 	ISceneManager* mgr, s32 id,
 	f32 mass, const core::vector3df& initForce,
 	const core::vector3df& position,
@@ -71,8 +73,15 @@ IMeshSceneNode* CPhXSceneManager::addPhysicsRigidBody(f32 length, f32 width, ISc
 	if (!parent)
 		parent = physicsNode;
 
-	CPhXRigidBody* body = new CPhXRigidBody(mass,length,width);
-
+    CPhXRigidBody* body;
+    if (colbox)
+    {
+        body = new CPhXRigidBody(mass, *colbox);
+    }
+    else
+    {
+        body = new CPhXRigidBody(mass,length,width);
+    }
 	IMeshSceneNode* node = new CPhXRigidBodySceneNode(body, parent, this, id, position, rotation, scale);
 	node->drop();
 
@@ -123,7 +132,7 @@ ICameraSceneNode* CPhXSceneManager::addCameraSceneNodeFPS(ISceneNode* parent,
 bool CPhXSceneManager::postEventFromUser(const SEvent& event)
 {
 	bool ret = CSceneManager::postEventFromUser(event);
-	
+
 	_IRR_IMPLEMENT_MANAGED_MARSHALLING_BUGFIX;
 	return ret;
 }

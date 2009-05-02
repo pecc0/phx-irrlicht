@@ -3,7 +3,7 @@
 <!--This is a config file for the Irrlicht Engine Mesh Viewer.-->
 <!--<startUpModel file="dwarf.x" />-->
 <!--<startUpModel file="/danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/export/export/sleg.PHX" /> -->
-<startUpModel file="sleg.PHX" /> 
+<startUpModel file="boxbin.PHX" /> 
 <messageText caption="Irrlicht Engine Mesh Viewer">Welcome to the Mesh Viewer of the &quot;Irrlicht Engine&quot;!.
 This program is able to load and display all 3D geometry and models the Irrlicht Engine can.
 Controls: Left mouse to rotate, right mouse to move, both buttons to zoom. Escape to Stop FPS Camera

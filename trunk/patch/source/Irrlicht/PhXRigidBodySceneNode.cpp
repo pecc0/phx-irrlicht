@@ -24,7 +24,7 @@ namespace scene
         |  /      |  /
         |/        | /
         0------11,1/
-       000       100       
+       000       100
 	*/
 
 //! constructor
@@ -39,7 +39,7 @@ CPhXRigidBodySceneNode::CPhXRigidBodySceneNode(CPhXRigidBody* body, ISceneNode* 
 	setDebugName("CPhXRigidBodySceneNode");
 	#endif
 
-	const u16 u[36] = {   0,2,1,   0,3,2,   1,5,4,   1,2,5,   4,6,7,   4,5,6, 
+	const u16 u[36] = {   0,2,1,   0,3,2,   1,5,4,   1,2,5,   4,6,7,   4,5,6,
             7,3,0,   7,6,3,   9,5,2,   9,8,5,   0,11,10,   0,10,7};
 
 	SMeshBuffer* buf = new SMeshBuffer();
@@ -55,9 +55,9 @@ CPhXRigidBodySceneNode::CPhXRigidBodySceneNode(CPhXRigidBody* body, ISceneNode* 
 
 void CPhXRigidBodySceneNode::setSize()
 {
-	// we are creating the cube mesh here. 
+	// we are creating the cube mesh here.
 
-	// nicer texture mapping sent in by Dr Andros C Bragianos 
+	// nicer texture mapping sent in by Dr Andros C Bragianos
 	// .. and then improved by jox.
 
 	video::SColor clr(255,255,255,255);
@@ -67,19 +67,9 @@ void CPhXRigidBodySceneNode::setSize()
 	buf->Vertices.reallocate(12);
 	// Start setting vertices from index 0 to deal with this method being called multiple times.
 	buf->Vertices.set_used(0);
-	f32 len = theBody->m_length / theBody->m_width;
-	
+
 	core::vector3df* pmi = &(theBody->collisionBox.MinEdge);
 	core::vector3df* pma = &(theBody->collisionBox.MaxEdge);
-
-	pmi->set(0,0,0);
-	pma->set(len,1,1);
-
-	*pmi -= core::vector3df(0.5f, 0.5f, 0.5f);
-	*pma -= core::vector3df(0.5f, 0.5f, 0.5f);
-
-	*pmi *= theBody->m_width;
-	*pma *= theBody->m_width;
 
 	buf->Vertices.push_back(video::S3DVertex(pmi->X,pmi->Y,pmi->Z, -1,-1,-1, clr, 0, 1));
 	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pmi->Z,  1,-1,-1, clr, 1, 1));
@@ -94,7 +84,7 @@ void CPhXRigidBodySceneNode::setSize()
 	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pma->Z,  1,-1, 1, clr, 1, 0));
 	buf->Vertices.push_back(video::S3DVertex(pma->X,pmi->Y,pmi->Z,  1,-1,-1, clr, 0, 0));
 
-	buf->BoundingBox.reset(0,0,0); 
+	buf->BoundingBox.reset(0,0,0);
 
 	for (u32 i=0; i<12; ++i)
 	{
@@ -154,8 +144,8 @@ void CPhXRigidBodySceneNode::serializeAttributes(io::IAttributes* out, io::SAttr
 	//TODO: implement
 	ISceneNode::serializeAttributes(out, options);
 
-	out->addFloat("Length", theBody->m_length);
-	out->addFloat("Width", theBody->m_width);
+	//out->addFloat("Length", theBody->m_length);
+	//out->addFloat("Width", theBody->m_width);
 }
 
 
@@ -163,11 +153,11 @@ void CPhXRigidBodySceneNode::serializeAttributes(io::IAttributes* out, io::SAttr
 void CPhXRigidBodySceneNode::deserializeAttributes(io::IAttributes* in, io::SAttributeReadWriteOptions* options)
 {
 	//TODO: implement
-	theBody->m_length = in->getAttributeAsFloat("Length");
-	theBody->m_length = core::max_(theBody->m_length, 0.0001f);
+//	theBody->m_length = in->getAttributeAsFloat("Length");
+//	theBody->m_length = core::max_(theBody->m_length, 0.0001f);
 
-	theBody->m_width = in->getAttributeAsFloat("Width");
-	theBody->m_width = core::max_(theBody->m_width, 0.0001f);
+//	theBody->m_width = in->getAttributeAsFloat("Width");
+//	theBody->m_width = core::max_(theBody->m_width, 0.0001f);
 
 	setSize();
 
@@ -181,7 +171,7 @@ ISceneNode* CPhXRigidBodySceneNode::clone(ISceneNode* newParent, ISceneManager* 
 	if (!newParent) newParent = Parent;
 	if (!newManager) newManager = SceneManager;
 
-	CPhXRigidBodySceneNode* nb = new CPhXRigidBodySceneNode(theBody, newParent, 
+	CPhXRigidBodySceneNode* nb = new CPhXRigidBodySceneNode(theBody, newParent,
 		newManager, ID, RelativeTranslation);
 
 	nb->cloneMembers(this, newManager);

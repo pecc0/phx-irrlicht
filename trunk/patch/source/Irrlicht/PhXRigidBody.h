@@ -35,6 +35,7 @@ class CPhXRigidBody :
 {
 public:
 	CPhXRigidBody(f32 mass, f32 length, f32 width);
+	CPhXRigidBody(f32 mass, const core::aabbox3df &);
 	~CPhXRigidBody(void);
 
 
@@ -55,8 +56,8 @@ public:
 	//CPhXRigidBody* parent;
 
 	//TODO: getters / setters
-	f32 m_length;
-	f32 m_width;
+	//f32 m_length;
+	//f32 m_width;
 
 	core::aabbox3df collisionBox;
 

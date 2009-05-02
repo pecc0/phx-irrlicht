@@ -1,6 +1,7 @@
 #include "PhXFileTree.h"
 #include "os.h"
 #include "PhXFormattedString.h"
+#include "PhXTemplateField.h"
 
 namespace irr
 {
@@ -41,26 +42,26 @@ int CPhXTemplate::fromFile(scene::CXMeshFileLoader * l)
 		do
 		{
 			tok = l->getNextToken();
-		} 
+		}
 		while (tok.size() && tok != "}");
 		return 2;
 	}
-	
-	
+
+
 	tok = l->getNextToken();
 	if (tok != "{"){
 		os::Printer::log(core::PhXFormattedString("Can't read template %s", name.c_str()).c_str());
 		return 0;
 	}
-	
+
 	for (;;)
 	{
 		CPhXTemplateField* f = new CPhXTemplateField();
-		
+
 		f->parent = this;
 		f->root = this->root;
 		int res = f->fromFile(l);
-		
+
 		if (!res)
 		{
 			f->drop();
@@ -73,7 +74,7 @@ int CPhXTemplate::fromFile(scene::CXMeshFileLoader * l)
 		else if (res == 2)
 		{
 			/*
-			core::list<core::PhXFormattedString> optionals = 
+			core::list<core::PhXFormattedString> optionals =
 				core::PhXFormattedString(f->name.subString(1, f->name.size() - 2)).split(",");
 				*/
 			isOpen = true;
@@ -82,13 +83,13 @@ int CPhXTemplate::fromFile(scene::CXMeshFileLoader * l)
 			/*
 			if (optionals.getSize() == 1 && (*(optionals.begin()))=="..." )
 			{
-				
+
 			}
 			else
 			{
 				for (irr::core::list<PhXFormattedString*>::Iterator i = optionals.begin(); i != optionals.end(); ++i)
 				{
-					
+
 				}
 			}
 			*/
@@ -103,22 +104,22 @@ int CPhXTemplate::fromFile(scene::CXMeshFileLoader * l)
 			f->drop();
 		}
 	}
-	
+
 	return 1;
 }
 
 int CPhXFileTree::fromFile(scene::CXMeshFileLoader * l) {
-	
+
 	core::PhXFormattedString token = l->getNextToken();
 	while (token.size() != 0)
 	{
 		//os::Printer::log("tocken:", token.c_str());
-		
+
 		if (!addNode(token, l))
 		{
 			return 0;
 		}
-		
+
 		token = l->getNextToken();
 	}
 	return 1;
@@ -156,7 +157,7 @@ int irr::CPhXFileTree::addNode(core::PhXFormattedString tok, scene::CXMeshFileLo
 			CPhXNode* n = f->getFldByName("templName");
 			core::PhXFormattedString tname = n->data->getData();
 			CPhXNode* nt = getSubNode(tname);
-			
+
 			for (irr::core::list<CPhXNode*>::Iterator i = subNodes->begin(); (i+1) != subNodes->end(); ++i)
 			{
 				if ((*i)->templ == f->templ) //if we *i is of type NewlineFormat
@@ -165,7 +166,7 @@ int irr::CPhXFileTree::addNode(core::PhXFormattedString tok, scene::CXMeshFileLo
 					{
 						os::Printer::log(
 							core::PhXFormattedString(
-							"info:We already have format data for template %s (line %d)", 
+							"info:We already have format data for template %s (line %d)",
 							tname.c_str(), l->Line).c_str());
 						nt = NULL;
 						delete f;
@@ -175,7 +176,7 @@ int irr::CPhXFileTree::addNode(core::PhXFormattedString tok, scene::CXMeshFileLo
 					}
 				}
 			}
-			
+
 			if (nt && !nt->templ)
 			{
 				//n->grab();
@@ -238,9 +239,9 @@ core::PhXFormattedString CPhXTemplate::toString() {
 	return ret;
 }
 
-irr::core::PhXFormattedString CPhXFileTree::toString() 
+irr::core::PhXFormattedString CPhXFileTree::toString()
 {
-	irr::core::PhXFormattedString ret("xof %02d%02dtxt %s\n", 
+	irr::core::PhXFormattedString ret("xof %02d%02dtxt %s\n",
 		majorVersion, minorVersion,
 		floatSize == 4 ? "0032" : "0064");
 	fieldsRead = 0;

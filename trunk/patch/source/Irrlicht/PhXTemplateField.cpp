@@ -1,4 +1,4 @@
-#include "PhXData.h"
+#include "PhXTemplateField.h"
 #include "PhXFileTree.h"
 #include "PhXFormattedString.h"
 #include "os.h"
@@ -17,7 +17,7 @@ CPhXTemplateField::~CPhXTemplateField(void)
 		(*i)->drop();
 	}
 }
-	
+
 irr::core::PhXFormattedString CPhXTemplateField::toString() {
 	irr::core::PhXFormattedString ret;
 	if (arraydimensions.getSize() > 0)
@@ -77,7 +77,7 @@ int CPhXTemplateField::fromFile(scene::CXMeshFileLoader * l) {
 		{
 			os::Printer::log(
 				core::PhXFormattedString(
-				"field type %s in %s misses name", token.c_str(), 
+				"field type %s in %s misses name", token.c_str(),
 				((CPhXTemplate*)parent)->name.c_str()).c_str());
 			return false;
 		}
@@ -141,7 +141,7 @@ int CPhXTemplateField::fromFile(scene::CXMeshFileLoader * l) {
 		token = l->getNextToken();
 		if (token != ";"){
 			os::Printer::log(core::PhXFormattedString(
-				"Bad syntax in template %s: expected ';' found '%s' while reading field %s", 
+				"Bad syntax in template %s: expected ';' found '%s' while reading field %s",
 				parent->getData(), token, name).c_str());
 			return 0;
 		}
@@ -153,59 +153,59 @@ bool irr::CPhXTemplateField::setType(core::PhXFormattedString str)
 {
 	if (str.equals_ignore_case("BINARY"))
 	{
-		phxtype = PHXBINARY;	
-	} 
+		phxtype = PHXBINARY;
+	}
 	else if (str.equals_ignore_case("BINARY_RESOURCE"))
 	{
-		phxtype = PHXBINARY_RESOURCE; 
+		phxtype = PHXBINARY_RESOURCE;
 	}
 	else if (str.equals_ignore_case("CHAR"))
 	{
-		phxtype = PHXCHAR; 
+		phxtype = PHXCHAR;
 	}
 	else if (str.equals_ignore_case("CSTRING"))
 	{
-		phxtype = PHXCSTRING; 
+		phxtype = PHXCSTRING;
 	}
 	else if (str.equals_ignore_case("DOUBLE"))
 	{
-		phxtype = PHXDOUBLE; 
+		phxtype = PHXDOUBLE;
 	}
 	else if (str.equals_ignore_case("DWORD"))
 	{
-		phxtype = PHXDWORD; 
+		phxtype = PHXDWORD;
 	}
 	else if (str.equals_ignore_case("FLOAT"))
 	{
-		phxtype = PHXFLOAT; 
+		phxtype = PHXFLOAT;
 	}
 	else if (str.equals_ignore_case("SDWORD"))
 	{
-		phxtype = PHXSDWORD; 
+		phxtype = PHXSDWORD;
 	}
 	else if (str.equals_ignore_case("STRING"))
 	{
-		phxtype = PHXSTRING; 
+		phxtype = PHXSTRING;
 	}
 	else if (str.equals_ignore_case("SWORD "))
 	{
-		phxtype = PHXSWORD ; 
+		phxtype = PHXSWORD ;
 	}
 	else if (str.equals_ignore_case("UCHAR"))
 	{
-		phxtype = PHXUCHAR; 
+		phxtype = PHXUCHAR;
 	}
 	else if (str.equals_ignore_case("ULONGLONG"))
 	{
-		phxtype = PHXULONGLONG; 
+		phxtype = PHXULONGLONG;
 	}
 	else if (str.equals_ignore_case("UNICODE"))
 	{
-		phxtype = PHXUNICODE; 
+		phxtype = PHXUNICODE;
 	}
 	else if (str.equals_ignore_case("WORD"))
 	{
-		phxtype = PHXWORD ; 
+		phxtype = PHXWORD ;
 	}
 	else
 	{
@@ -219,9 +219,9 @@ bool irr::CPhXTemplateField::setType(core::PhXFormattedString str)
 
 		os::Printer::log(
 			core::PhXFormattedString(
-			"Template %s referenced in %s is not defind", str.c_str(), 
+			"Template %s referenced in %s is not defind", str.c_str(),
 			((CPhXTemplate*)parent)->name.c_str()).c_str());
-		
+
 		return false;
 	}
 	return true;
@@ -229,59 +229,59 @@ bool irr::CPhXTemplateField::setType(core::PhXFormattedString str)
 
 core::PhXFormattedString irr::CPhXTemplateField::getType(void)
 {
-	if (phxtype == PHXBINARY) 
+	if (phxtype == PHXBINARY)
 	{
 		return "BINARY";
 	}
-	else if (phxtype == PHXBINARY_RESOURCE) 
+	else if (phxtype == PHXBINARY_RESOURCE)
 	{
 		return "BINARY_RESOURCE";
 	}
-	else if (phxtype == PHXCHAR) 
+	else if (phxtype == PHXCHAR)
 	{
 		return "CHAR";
 	}
-	else if (phxtype == PHXCSTRING) 
+	else if (phxtype == PHXCSTRING)
 	{
 		return "CSTRING";
 	}
-	else if (phxtype == PHXDOUBLE) 
+	else if (phxtype == PHXDOUBLE)
 	{
 		return "DOUBLE";
 	}
-	else if (phxtype == PHXDWORD) 
+	else if (phxtype == PHXDWORD)
 	{
 		return "DWORD";
 	}
-	else if (phxtype == PHXFLOAT) 
+	else if (phxtype == PHXFLOAT)
 	{
 		return "FLOAT";
 	}
-	else if (phxtype == PHXSDWORD) 
+	else if (phxtype == PHXSDWORD)
 	{
 		return "SDWORD";
 	}
-	else if (phxtype == PHXSTRING) 
+	else if (phxtype == PHXSTRING)
 	{
 		return "STRING";
 	}
-	else if (phxtype == PHXSWORD ) 
+	else if (phxtype == PHXSWORD )
 	{
 		return "SWORD ";
 	}
-	else if (phxtype == PHXUCHAR) 
+	else if (phxtype == PHXUCHAR)
 	{
 		return "UCHAR";
 	}
-	else if (phxtype == PHXULONGLONG) 
+	else if (phxtype == PHXULONGLONG)
 	{
 		return "ULONGLONG";
 	}
-	else if (phxtype == PHXUNICODE) 
+	else if (phxtype == PHXUNICODE)
 	{
 		return "UNICODE";
 	}
-	else if (phxtype == PHXWORD) 
+	else if (phxtype == PHXWORD)
 	{
 		return "WORD";
 	}

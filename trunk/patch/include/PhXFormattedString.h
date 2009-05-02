@@ -3,6 +3,7 @@
 #include "irrString.h"
 #include <stdarg.h>
 #include "irrList.h"
+#include "fast_atof.h"
 
 #define __IRR_PHXFORMATTEDSTRING_H_INCLUDED__
 
@@ -20,16 +21,16 @@ namespace irr{
 			{
 				*this = other;
 			}
-			
+
 			PhXFormattedString(u32 i):stringc(i){}
 			PhXFormattedString(double d):stringc(d){}
-			
+
 			PhXFormattedString& operator=(const c8* other)
 			{
 				stringc::operator = (other);
 				return *this;
 			}
-			
+
 			PhXFormattedString& operator=(const stringc& other)
 			{
 				stringc::operator = (other);

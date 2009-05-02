@@ -780,10 +780,11 @@
 	"position2d.h"
 	"line3d.h"
 
-1241105768 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneManager.h
+1241288015 /danni/wkspcpp/phx-irrlicht/trunk/irrlicht_1.5_svn/include/ISceneManager.h
 	"IReferenceCounted.h"
 	"irrArray.h"
 	"vector3d.h"
+	"aabbox3d.h"
 	"dimension2d.h"
 	"SColor.h"
 	"ETerrainElements.h"

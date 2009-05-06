@@ -4,12 +4,13 @@
 #include "IFileSystem.h"
 #include "IWriteFile.h"
 #include "PhXComplexBody.h"
+#include <string.h>
 
 namespace irr
 {
 namespace scene
 {
-char* defaultTemplates =
+const char* defaultTemplates =
 "xof 0303txt 0032\n\
 template Matrix4x4 {\n\
 	<f6f23f45-7686-11cf-8f52-0040333594a3>\n\
@@ -155,6 +156,16 @@ template AnimationOptions\n\
     DWORD openclosed;\n\
     DWORD positionquality;\n\
 }\n\
+template Box {\n\
+<somebody-give-me-an-UUID>\n\
+	Vector min;\n\
+	Vector max;\n\
+}\n\
+template Collision {\n\
+	<UUID>\n\
+	[...]\n\
+}\n\
+\n\
 template NewlineFormat {\n\
 	<NUM>\n\
 	STRING templName;\n\
@@ -228,14 +239,17 @@ bool CPhXFileLoader::parseFile()
 {
 	const irr::c8* bkp = P;
 	CPhXFileTree* tree;
+    c8 * buf = new c8[strlen(defaultTemplates) + 1];
+    strcpy(buf, defaultTemplates);
 
 	io::IReadFile* file = FileSystem->createMemoryReadFile(
-		defaultTemplates,
+		buf,
 		strlen(defaultTemplates),
 		"dafaultTemplates.phx", false);
 
 	if (!file)
 	{
+	    delete[] buf;
 		os::Printer::log("Could not load mesh, because file could not be opened.", "dafaultTemplates.phx", ELL_ERROR);
 		return 0;
 	}
@@ -244,6 +258,8 @@ bool CPhXFileLoader::parseFile()
 	if (!defTemplatesLoader->readFileIntoMemory(file)) {
 		file->drop();
 		defTemplatesLoader->drop();
+		delete[] buf;
+		os::Printer::log("Could not load mesh, because file could not be read.", "dafaultTemplates.phx", ELL_ERROR);
 		return false;
 	}
 	tree = new CPhXFileTree();
@@ -276,6 +292,7 @@ bool CPhXFileLoader::parseFile()
 	{
 		tree->drop();
 	}
+	delete[] buf;
 	return ret;
 }
 

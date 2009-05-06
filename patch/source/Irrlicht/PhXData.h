@@ -91,7 +91,9 @@ public:
 	virtual void setData(irr::core::PhXFormattedString d) {
 		data = d;
 	}
-	virtual irr::core::PhXFormattedString toString() { return irr::core::PhXFormattedString("\"%s\"", data.c_str()); };
+	virtual irr::core::PhXFormattedString toString() {
+	    return irr::core::PhXFormattedString("\"%s\"", data.c_str());
+    };
 	virtual int fromFile(scene::CXMeshFileLoader * l);
 };
 

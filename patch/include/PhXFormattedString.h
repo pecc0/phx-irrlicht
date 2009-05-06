@@ -12,7 +12,7 @@ namespace irr{
 		class PhXFormattedString : public stringc
 		{
 		public:
-			PhXFormattedString(c8*format, ...);
+			PhXFormattedString(const c8*format, ...);
 			PhXFormattedString()
 			{
 			}
@@ -63,13 +63,13 @@ namespace irr{
 				return -1;
 			}
 
-			list <PhXFormattedString> split(c8* delim);
+			list <PhXFormattedString> split(const c8* delim);
 
 			bool getInt(int& out)
 			{
 				const char* ierr;
 				out = core::strtol10(c_str(), &ierr);
-				return ierr - c_str() == size();
+				return (unsigned)(ierr - c_str()) == size();
 			}
 		};
 

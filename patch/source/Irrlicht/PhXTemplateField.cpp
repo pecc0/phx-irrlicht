@@ -142,7 +142,7 @@ int CPhXTemplateField::fromFile(scene::CXMeshFileLoader * l) {
 		if (token != ";"){
 			os::Printer::log(core::PhXFormattedString(
 				"Bad syntax in template %s: expected ';' found '%s' while reading field %s",
-				parent->getData(), token, name).c_str());
+				parent->getData().c_str(), token.c_str(), name.c_str()).c_str());
 			return 0;
 		}
 	}

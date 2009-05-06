@@ -226,6 +226,23 @@ template Box {
 }
 
 
+Collision test {
+	Collision a {
+		Collision aa {
+			Collision aaa {
+			}
+		}
+		Collision ab {
+			Collision aba {
+			}
+		}
+	}
+	Collision b {
+		Collision ba
+		{
+		}
+	}
+}
 Frame Bone01 {
 	
 	FrameTransformMatrix  {
@@ -235,11 +252,12 @@ Frame Bone01 {
 		-1.304283,0.000000,-5.909996,1.000000;;
 	}
 	
-	Box {
-		-8.799385;0.000000;-25.974373;;
-		8.799385;19.180513;25.974373;;
+	Collision {
+		Box {
+			-8.799385;0.000000;-25.974373;;
+			8.799385;19.180513;25.974373;;
+		}
 	}
-
 	Mesh  {
 		36;
 		-8.799385;0.000000;-25.974373;,

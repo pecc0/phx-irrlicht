@@ -84,7 +84,6 @@ void irr::CPhXNode::getAllNodesOfType(PhXFormattedString templateName, list<list
 	{
 		if ((*i)->templ && (*i)->templ->name.equals_ignore_case(templateName))
 		{
-
 			outList.push_back(i);
 		}
 
@@ -129,6 +128,8 @@ CPhXNode* irr::CPhXNode::createFieldFromType(CPhXTemplateField* type, scene::CXM
 			return NULL;
 		}
 		break;
+    default:
+        break;
 	}
 	return n;
 }
@@ -234,8 +235,8 @@ int irr::CPhXNode::fromFile(scene::CXMeshFileLoader * l)
 		};
 		os::Printer::log(
 			core::PhXFormattedString("Node %s: of template %s misses '}'",
-				this->name,
-				templ->name
+				this->name.c_str(),
+				templ->name.c_str()
 			).c_str());
 		return 0;
 	}
@@ -449,7 +450,184 @@ core::vector3df CPhXNode::getVector()
     return out;
 }
 
+/** @brief operator--
+  *
+  * @todo: document this function
+  */
+CPhXNode::Iterator CPhXNode::Iterator::operator--(s32)
+{
+    Iterator tmp = *this;
+    stepBackPipe();
+    return tmp;
+}
 
+
+
+/** @brief operator++
+  *
+  * @todo: document this function
+  */
+CPhXNode::Iterator CPhXNode::Iterator::operator++(s32)
+{
+    Iterator tmp = *this;
+    advancePipe();
+    return tmp;
+
+}
+
+/** @brief ~Iterator
+  *
+  * @todo: document this function
+  */
+CPhXNode::Iterator::~Iterator()
+{
+    if (next)
+    {
+        next->drop();
+    }
+}
+
+
+/** @brief stepBackPipe
+  *
+  * @todo: document this function
+  */
+void CPhXNode::Iterator::stepBackPipe()
+{
+    stepBack();
+    if (next)
+    {
+        next->Current = this->Current;
+        next->stepBack();
+        this->Current = next->Current;
+    }
+}
+
+/** @brief advancePipe
+  *
+  * @todo: document this function
+  */
+void CPhXNode::Iterator::advancePipe()
+{
+    advance();
+    if (next)
+    {
+        next->Current = this->Current;
+        next->advance();
+        this->Current = next->Current;
+    }
+}
+
+
+/** @brief advance
+  *
+  * Implemendts the step in a dfs
+  */
+void CPhXNode::DFSIterator::advance()
+{
+    if (Current != end)
+    {
+        if ((*Current)->subNodes && (*Current)->subNodes->getSize()>0)
+        {
+            stack.push_front(Current);
+            Current = (*Current)->subNodes->begin();
+            return;
+        }
+        if (Current != end)
+        {
+            Current++;
+        }
+        while (Current == end && stack.getSize() > 0)
+        {
+            stepBack();
+        }
+    }
+}
+
+/** @brief stepBack
+  *
+  * I don't find any sense in implementing the step back operator
+  * for a DFS. So the step back will just pop from the stack;
+  */
+void CPhXNode::DFSIterator::stepBack()
+{
+    core::list<irr::core::list<CPhXNode*>::Iterator>::Iterator i = stack.begin();
+    i = stack.erase(i);
+    if (i == stack.end())
+    {
+        return;
+    }
+    Current = *i;
+    Current++;
+}
+
+/** @brief advance
+  *
+  * Implemendts the step in a Breadth-first search
+  */
+void CPhXNode::BFSIterator::advance()
+{
+    if (queue.empty())
+    {
+        return;
+    }
+    core::list<irr::core::list<CPhXNode*>::Iterator>::Iterator qI = queue.begin();
+
+    Current = *qI;
+    irr::core::list<CPhXNode*>::Iterator i = (*Current)->subNodes->begin();
+    for (; i != end; ++i)
+    {
+        queue.push_back(i);
+    }
+    qI = queue.erase(qI);
+    if (qI == queue.end())
+    {
+        Current = end;
+        return;
+    }
+    Current = *qI;
+}
+
+/** @brief stepBack
+  *
+  * @todo: document this function
+  */
+void CPhXNode::BFSIterator::stepBack()
+{
+
+}
+
+/** @brief stepBack
+  *
+  * @todo: document this function
+  */
+void CPhXNode::NodeNameIterator::stepBack()
+{
+
+}
+
+/** @brief advance
+  *
+  * @todo: document this function
+  */
+void CPhXNode::NodeNameIterator::advance()
+{
+    if (!lock && Current != end)
+    {
+        //avoid the recursion
+        lock = 1;
+        ++(*this);
+        while(Current != end && nodeName != (*Current)->name)
+        {
+            ++(*this);
+        }
+        lock = 0;
+    }
+}
+
+
+
+//arrstart
 
 irr::core::PhXFormattedString CPhXArray::toString()
 {

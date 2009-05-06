@@ -1,6 +1,7 @@
 #include "PhXComplexBody.h"
 #include "PhXRigidBodySceneNode.h"
 #include "PhXFormattedString.h"
+#include "os.h"
 
 namespace irr
 {
@@ -8,7 +9,7 @@ namespace phy
 {
 using namespace irr::core;
 CPhXComplexBody::CPhXComplexBody(ISceneManager *mgr):
-    fileTree(0),sceneMgr(mgr)
+    sceneMgr(mgr),fileTree(0)
 {
 }
 
@@ -18,7 +19,7 @@ CPhXComplexBody::~CPhXComplexBody(void)
 	{
 		fileTree->drop();
 	}
-	for(int j=0; j < getAllJoints().size(); j++)
+	for(u32 j=0; j < getAllJoints().size(); j++)
 	{
         SPhXJoint *joint = (SPhXJoint*)getAllJoints()[j];
         if (joint->body && !joint->parent)
@@ -42,30 +43,37 @@ void CPhXComplexBody::createBoneSceneNode(SPhXJoint *joint)
 
     //joint->Animatedrotation.toEuler(rotation);
 
-    CPhXNode* jointNode = fileTree->getSubNode(joint->Name);
-    list<list<CPhXNode*>::Iterator> boxNodes;
-    jointNode->getAllNodesOfType("Box", boxNodes);
     core::aabbox3df box;
     core::aabbox3df* pbox = 0;
-    if (boxNodes.getSize() > 0)
+    f32 width = 15, length = 30;
+
+
+    list<list<CPhXNode*>::Iterator> boxNodes;
+    list<list<CPhXNode*>::Iterator> collisionNodes;
+    joint->jointNode->getAllNodesOfType("Collision", collisionNodes);
+    if (collisionNodes.getSize() > 0)
     {
-        CPhXNode* boxNode = (*(*boxNodes.getLast()));
+        (*(*collisionNodes.getLast()))->getAllNodesOfType("Box", boxNodes);
 
-        box.MinEdge = boxNode->getFldByName("min")->getVector();
-        box.MaxEdge = boxNode->getFldByName("max")->getVector();
-        pbox = &box;
+        if (boxNodes.getSize() > 0)
+        {
+            CPhXNode* boxNode = (*(*boxNodes.getLast()));
+
+            box.MinEdge = boxNode->getFldByName("min")->getVector();
+            box.MaxEdge = boxNode->getFldByName("max")->getVector();
+            pbox = &box;
+        }
     }
-
     CPhXRigidBodySceneNode* n = (CPhXRigidBodySceneNode*)sceneMgr->addPhysicsRigidBody(
         pbox,
-        30, 15, 0,
+        length, width, 0,
         sceneMgr, -1,
         10, core::vector3df(0,0,0),
         joint->GlobalMatrix.getTranslation(),
         joint->GlobalMatrix.getRotationDegrees()
         );
     joint->body = n->getBody();
-    for(int j=0; j < joint->Children.size(); j++)
+    for(u32 j=0; j < joint->Children.size(); j++)
 	{
 	    ((SPhXJoint*)joint->Children[j])->parent = joint;
 	    createBoneSceneNode((SPhXJoint*)joint->Children[j]);
@@ -75,17 +83,28 @@ void CPhXComplexBody::createBoneSceneNode(SPhXJoint *joint)
 void CPhXComplexBody::finalize()
 {
 	irr::scene::CSkinnedMesh::finalize();
+/*
+    CPhXNode* test = fileTree->getSubNode("test");
+    CPhXNode::NodeNameIterator r("a");
+    test->iteratorStart(r);
+    for (;!r.isEnd(); r++)
+    {
+        os::Printer::log(
+             core::PhXFormattedString("%s", (*r)->name.c_str()
+             ).c_str());
+    }
+*/
 	CSkinnedMesh::animateMesh(0, 1);
 	//list<list<CPhXNode*>::Iterator> allMotorNodes;
 	core::PhXFormattedString strname;
-	for(int j=0; j < getAllJoints().size(); j++)
+	for(u32 j=0; j < getAllJoints().size(); j++)
 	{
         SPhXJoint *joint = (SPhXJoint*)getAllJoints()[j];
         strname = joint->Name;
-        if (strname.find("Bone01", 0) >= 0)
+        joint->jointNode = fileTree->getSubNode(strname);
+        if (strname.find("Bone", 0) >= 0 || joint->jointNode)
         {
             createBoneSceneNode(joint);
-
             break;
         }
 
@@ -126,7 +145,7 @@ void CPhXComplexBody::animateJoint(SPhXJoint *joint)
 
     //joint->Animatedscale.set(1,1,1);
 
-    for(int j=0; j < joint->Children.size(); j++)
+    for(u32 j=0; j < joint->Children.size(); j++)
 	{
 	    animateJoint((SPhXJoint*)joint->Children[j]);
 	}

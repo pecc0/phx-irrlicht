@@ -16,10 +16,11 @@ class CPhXComplexBody :
 public:
     struct SPhXJoint: public irr::scene::CSkinnedMesh::SJoint
     {
-        SPhXJoint():SJoint(),parent(0),body(0)
+        SPhXJoint():SJoint(),body(0),parent(0)
         {};
         CPhXRigidBody* body;
         SPhXJoint* parent;
+        CPhXNode* jointNode;
         //precaching these as quaternions
         core::quaternion initialRotationInv;
         core::quaternion localRotation;

@@ -229,7 +229,9 @@ template Box {
 Collision test {
 	Collision a {
 		Collision aa {
-			Collision aaa {
+			Collision A {
+			}
+			Frame a {
 			}
 		}
 		Collision ab {
@@ -238,8 +240,11 @@ Collision test {
 		}
 	}
 	Collision b {
+		Frame A{
+		}
 		Collision ba
 		{
+			
 		}
 	}
 }

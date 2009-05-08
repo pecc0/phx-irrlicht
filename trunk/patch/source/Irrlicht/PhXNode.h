@@ -26,6 +26,7 @@ public:
         {
             next = nextIterator;
         }
+		Iterator(const Iterator&);
         virtual ~Iterator();
 		Iterator& operator ++()    { advancePipe(); return *this; }
 		Iterator& operator --()    { stepBackPipe(); return *this; }
@@ -58,6 +59,9 @@ public:
 
 		CPhXNode* operator * () { return *Current; }
 		//(CPhXNode*) * operator ->() { return Current; }
+
+		Iterator& operator =(const Iterator& other);
+
         bool isEnd() const
         {
             bool result = (Current == end);
@@ -92,6 +96,7 @@ public:
 		irr::core::list<CPhXNode*>::Iterator Current;
         irr::core::list<CPhXNode*>::Iterator end;
         Iterator* next;
+		bool stopPropagation;
         friend class CPhXNode;
 	};
 
@@ -146,14 +151,14 @@ public:
         virtual void stepBack();
 
     };
-    class NodeNameIterator: public Iterator
+    class FilteringIterator: public Iterator
     {
         public:
-        NodeNameIterator(core::PhXFormattedString theName):nodeName(theName), lock(0)
+        FilteringIterator():lock(0)
         {
         }
-        NodeNameIterator(core::PhXFormattedString theName, Iterator* nextIterator):
-            Iterator(nextIterator),nodeName(theName),lock(0)
+        FilteringIterator(Iterator* nextIterator):
+            Iterator(nextIterator),lock(0)
         {
         }
         protected:
@@ -165,17 +170,49 @@ public:
                 next = new Iterator();
             }
             Iterator::start(begin);
-            if(nodeName != (*Current)->name)
+            if(!filter())
             {
                 ++(*this);
             }
         }
-        core::PhXFormattedString nodeName;
+        
         bool lock;
         virtual void advance();
 
         virtual void stepBack();
+
+		/**
+		* Return true if you want the current value to be iterated
+		*/
+		virtual bool filter() = 0;
     };
+
+	class NodeNameIterator: public FilteringIterator
+	{
+		public:
+		NodeNameIterator(core::PhXFormattedString name):
+			nodeName(name){}
+		NodeNameIterator(core::PhXFormattedString name, Iterator* nextIterator):
+			FilteringIterator(nextIterator), nodeName(name) {}
+	protected:
+		virtual bool filter();
+		private:
+		core::PhXFormattedString nodeName;
+	};
+
+	class TemplateNameIterator: public FilteringIterator
+	{
+		public:
+		TemplateNameIterator(core::PhXFormattedString templname):
+			templateName(templname){}
+		TemplateNameIterator(core::PhXFormattedString templname, Iterator* nextIterator):
+			FilteringIterator(nextIterator), templateName(templname) {}
+	protected:
+		virtual bool filter();
+		private:
+		core::PhXFormattedString templateName;
+	};
+
 	irr::core::list<CPhXNode*>* subNodes;
 	CPhXTemplate* templ;
 	CPhXNode* parent;
@@ -202,13 +239,13 @@ public:
 
 /** @brief getFldByName
   *
-  * Returns the field that with name fldName.
+  * Returns the field with name fldName.
   * This is the name that appears in the template
   * @param fldName the field's name that we are getting
   */
 	CPhXNode* getFldByName(core::PhXFormattedString fldName);
 
-	void getAllNodesOfType(PhXFormattedString templateName, list<list<CPhXNode*>::Iterator>& outList);
+	//void getAllNodesOfType(PhXFormattedString templateName, list<list<CPhXNode*>::Iterator>& outList);
 	core::vector3df getVector();
 
 	void iteratorStart(Iterator & iterator)

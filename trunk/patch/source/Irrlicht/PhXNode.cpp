@@ -77,7 +77,7 @@ CPhXNode* irr::CPhXNode::getSubNode(int index)
 	}
 	return NULL;
 }
-
+/*
 void irr::CPhXNode::getAllNodesOfType(PhXFormattedString templateName, list<list<CPhXNode*>::Iterator>& outList)
 {
 	for (irr::core::list<CPhXNode*>::Iterator i = subNodes->begin(); i != subNodes->end(); ++i)
@@ -91,7 +91,7 @@ void irr::CPhXNode::getAllNodesOfType(PhXFormattedString templateName, list<list
 
 	}
 }
-
+*/
 CPhXNode* irr::CPhXNode::createFieldFromType(CPhXTemplateField* type, scene::CXMeshFileLoader * l)
 {
 	CPhXNode* n= new CPhXNode();
@@ -461,8 +461,6 @@ CPhXNode::Iterator CPhXNode::Iterator::operator--(s32)
     return tmp;
 }
 
-
-
 /** @brief operator++
   *
   * @todo: document this function
@@ -487,6 +485,19 @@ CPhXNode::Iterator::~Iterator()
     }
 }
 
+CPhXNode::Iterator& CPhXNode::Iterator::operator =(const irr::CPhXNode::Iterator &other)
+{
+	this->Current = other.Current;
+	this->next = other.next;
+	this->next->grab();
+	return *this;
+}
+
+CPhXNode::Iterator::Iterator(const CPhXNode::Iterator& other):
+	Current(other.Current), next(other.next)
+{
+	this->next->grab();
+}
 
 /** @brief stepBackPipe
   *
@@ -494,8 +505,9 @@ CPhXNode::Iterator::~Iterator()
   */
 void CPhXNode::Iterator::stepBackPipe()
 {
+	stopPropagation = false;
     stepBack();
-    if (next)
+    if (next && !stopPropagation)
     {
         next->Current = this->Current;
         next->stepBack();
@@ -509,8 +521,9 @@ void CPhXNode::Iterator::stepBackPipe()
   */
 void CPhXNode::Iterator::advancePipe()
 {
+	stopPropagation = false;
     advance();
-    if (next)
+    if (next && !stopPropagation)
     {
         next->Current = this->Current;
         next->advance();
@@ -601,31 +614,52 @@ void CPhXNode::BFSIterator::stepBack()
   *
   * @todo: document this function
   */
-void CPhXNode::NodeNameIterator::stepBack()
+void CPhXNode::FilteringIterator::stepBack()
 {
-
+	//TODO: test me
+	if (!lock && Current != end)
+    {
+        //avoid the recursion
+        lock = 1;
+        --(*this);
+        while(Current != end && !filter())
+        {
+            --(*this);
+        }
+		stopPropagation = true;
+        lock = 0;
+    }
 }
 
 /** @brief advance
   *
   * @todo: document this function
   */
-void CPhXNode::NodeNameIterator::advance()
+void CPhXNode::FilteringIterator::advance()
 {
     if (!lock && Current != end)
     {
         //avoid the recursion
         lock = 1;
         ++(*this);
-        while(Current != end && nodeName != (*Current)->name)
+        while(Current != end && !filter())
         {
             ++(*this);
         }
+		stopPropagation = true;
         lock = 0;
     }
 }
 
+bool CPhXNode::NodeNameIterator::filter()
+{
+	return nodeName.equals_ignore_case((*Current)->name);
+}
 
+bool CPhXNode::TemplateNameIterator::filter()
+{
+	return templateName.equals_ignore_case((*Current)->templ->name);
+}
 
 //arrstart
 

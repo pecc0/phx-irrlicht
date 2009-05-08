@@ -3259,6 +3259,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\PhXNode.h"
+				>
+			</File>
+			<File
 				RelativePath=".\PhXRigidBody.cpp"
 				>
 			</File>
@@ -3308,6 +3312,10 @@
 			</File>
 			<File
 				RelativePath=".\PhXTemplateField.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\PhXTemplateField.h"
 				>
 			</File>
 		</Filter>

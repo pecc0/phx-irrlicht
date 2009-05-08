@@ -49,18 +49,19 @@ void CPhXComplexBody::createBoneSceneNode(SPhXJoint *joint)
 
 
     list<list<CPhXNode*>::Iterator> boxNodes;
-    list<list<CPhXNode*>::Iterator> collisionNodes;
-    joint->jointNode->getAllNodesOfType("Collision", collisionNodes);
-    if (collisionNodes.getSize() > 0)
+	CPhXNode::TemplateNameIterator iCollisions("Collision");
+    joint->jointNode->iteratorStart(iCollisions);
+	if (!iCollisions.isEnd())
     {
-        (*(*collisionNodes.getLast()))->getAllNodesOfType("Box", boxNodes);
+		CPhXNode::TemplateNameIterator iBoxes("Box");
+		(*iCollisions)->iteratorStart(iBoxes);
 
-        if (boxNodes.getSize() > 0)
+		if (!iBoxes.isEnd())
         {
-            CPhXNode* boxNode = (*(*boxNodes.getLast()));
+            //CPhXNode* boxNode = (*iBoxes);
 
-            box.MinEdge = boxNode->getFldByName("min")->getVector();
-            box.MaxEdge = boxNode->getFldByName("max")->getVector();
+            box.MinEdge = (*iBoxes)->getFldByName("min")->getVector();
+            box.MaxEdge = (*iBoxes)->getFldByName("max")->getVector();
             pbox = &box;
         }
     }
@@ -85,12 +86,15 @@ void CPhXComplexBody::finalize()
 	irr::scene::CSkinnedMesh::finalize();
 /*
     CPhXNode* test = fileTree->getSubNode("test");
-    CPhXNode::NodeNameIterator r("a");
+	CPhXNode::TemplateNameIterator r("Frame", 
+		new CPhXNode::NodeNameIterator("a", new CPhXNode::BFSIterator())
+		);
     test->iteratorStart(r);
     for (;!r.isEnd(); r++)
     {
         os::Printer::log(
-             core::PhXFormattedString("%s", (*r)->name.c_str()
+			core::PhXFormattedString("%s:%s", (*r)->name.c_str(),
+			(*r)->templ->name.c_str()
              ).c_str());
     }
 */

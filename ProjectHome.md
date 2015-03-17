@@ -1,0 +1,1 @@
+The goal is to train my knowledge in mechanics. I'm not going to add an already existing physics engine.
